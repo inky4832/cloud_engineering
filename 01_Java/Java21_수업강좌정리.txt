@@ -173,3 +173,38 @@ public class Hello {
 	   나. 변수명
 	   다. 메서드명
 
+ 2) main 메서드
+  - 형식:
+     	public static void main(String[] args) {}
+
+  - 용도:
+      자바프로그램을 실행할 때 사용하는 시작점 역할 ( starting point)
+  - 특징:
+      하나의 어플리케이션에는 반드시 단 하나의 main가 있어야 된다.
+
+ 3) 현재 코드에 사용중인 클래스 갯수 ?
+
+   
+     Hello.class : 사용자가 생성한 클래스
+
+     String.class : 자바시스템이 제공한 클래스 ( Java API 라고 부름 )
+     System.class : 자바시스템이 제공한 클래스 ( Java API 라고 부름 )
+ 
+    * Java API 역할
+      - 개발자가 원하는 임의의 어플리케이션을 개발할 때 도움을 줄 수 있는 클래스 파일들임. ( 압축해서 제공: *.jar )
+
+ 4) Java API 메뉴얼 제공 ( Java API documentation )
+   
+     -html 문서형식으로 제공
+      https://docs.oracle.com/en/java/javase/21/docs/api/index.html
+
+      System.class https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/System.html
+-------------------------------------------------------------
+* 괄호 3가지 
+ [] : 대괄호
+ {} : 중괄호
+ () : 소괄호
+
+  :  <== 콜론
+  ;  <== 세미콜론
+-------------------------------------------------------------
