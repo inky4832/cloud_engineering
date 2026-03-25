@@ -199,6 +199,39 @@ public class Hello {
       https://docs.oracle.com/en/java/javase/21/docs/api/index.html
 
       System.class https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/System.html
+
+ 5) 데이터 출력
+ 
+     - 데이터 외부로 출력하는 대상 3가지
+        
+	 (1) 모니터 ( 표준 출력: standard output)
+	      - 콘솔력(console) 출력
+	 (2) 파일
+	      - output.txt
+	 (3) 네트워크
+	      - 채팅
+
+     - 표준 출력: standard output 3가지
+        
+	가. 새로운 라인생성됨
+	System.out.println(값);
+
+	나. 새로운 라인 없이 출력됨 ( 한줄에 출력됨 )
+	System.out.print(값);
+
+        다. 특정한 포맷(format)형식으로 출력됨 ( 한줄에 출력됨 )
+	System.out.printf("포맷형식", 값, 값2, .... );
+
+	  포맷형식    값
+         ----------------
+	  %s      문자열(반드시 "" 지정)  ex. "hello" 
+	  %c      문자( 반드시 '' 지정)  ex.  '남'  'A'	
+	  %d      정수           ex. 100
+	  %f      실수           ex. 3.14
+          %b      논리값          ex. true, false
+
+	 
+
 -------------------------------------------------------------
 * 괄호 3가지 
  [] : 대괄호
