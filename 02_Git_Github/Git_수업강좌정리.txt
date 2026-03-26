@@ -163,7 +163,7 @@ Git
        git commit -m 커밋메시지   <== 전역사용자 정보가 같이 추가됨 
 
 
-   	      git add hello.txt
+   	      git add hello.txt                    git commit -m "메시지"
   작업디렉터리   --------------> 스테이지(staging area) -----------------> 로컬 저장소
  ex.git_tutorial                 hello.txt                            hello.txt 버전 생성
    hello.txt 
@@ -172,5 +172,167 @@ Git
    실습:
     
      $ git commit -m "first commit"
+       [main (root-commit) c150001] first commit
+       1 file changed, 0 insertions(+), 0 deletions(-) # 파일 하나가 변경됨.
+       create mode 100644 hello.txt
+
      $ git status
-     $ git log	
+       On branch main
+       nothing to commit, working tree clean # 버전으로 만들 파일이 없고 작업디렉터리(working directory)
+                                               도 수정사항없이 깨끗함.
+
+     $ git log	  # 커밋 목록 보기
+        commit c150001efdee151df191fd2466efe558083e7258 # 해시값 ( 40글자 )
+	      (HEAD -> main) # HEAD는 가장 마지막 커밋 참조
+	Author: inky4832 <inky4832@daum.net>     # 작성자 정보
+	Date:   Thu Mar 26 11:45:40 2026 +0900   # 커밋 시간
+
+	    first commit                         # 커밋 메시지
+
+
+
+     $ echo "hello" >> hello.txt   # 내용추가
+     $ git status
+       On branch main
+     Changes not staged for commit:
+     (use "git add <file>..." to update what will be committed)
+     (use "git restore <file>..." to discard changes in working directory)
+        modified:   hello.txt    # 버전관리된 적(tracked)이 있기 때문에 modified로 출력됨.
+      no changes added to commit (use "git add" and/or "git commit -a")
+
+      	                         
+  작업디렉터리   --------------> 스테이지(staging area) -----------------> 로컬 저장소
+ ex.git_tutorial                                                hello.txt 버전 1개 생성(first commit)
+   hello.txt 
+  (modified file)
+
+     현재 상태에서 할 수 있는 2가지 작업은 다음과 같다.
+      1) 스테이지로 올리기
+
+	       git add hello.txt
+  작업디렉터리   --------------> 스테이지(staging area) -----------------> 로컬 저장소
+ ex.git_tutorial                hello.txt                  hello.txt 버전 1개 생성(first commit)
+   hello.txt 
+
+
+	$ git add hello.txt
+	$ git status
+	On branch main
+        Changes to be committed:
+        (use "git restore --staged <file>..." to unstage)
+        modified:   hello.txt
+        $ git restore --staged hello.txt  # git add 되돌리기
+        $ cat hello.txt
+          hello           # git add만 되돌기기 됨. hello.txt 수정사항은 유지됨
+
+        $ git add hello.txt
+        $ git commit -m "second commit"
+	  [main 3a7ac4d] second commit
+	  1 file changed, 1 insertion(+)   # 파일 하나가 변경됨. 하나가 추가됨
+	$ git status
+
+      2) 변경사항 취소 ( 작업디렉터리에서 했던 작업 취소)
+
+  작업디렉터리   --------------> 스테이지(staging area) -----------------> 로컬 저장소
+ ex.git_tutorial                                                hello.txt 버전 1개 생성(first commit)
+   hello.txt 
+  (modified file)
+
+         $ git restore hello.txt 
+	 $ cat hello.txt
+	            <== hello 문자열 추가작업 취소
+	 $ git status
+	On branch main
+	nothing to commit, working tree clean
+
+--------------------------------------------------------------------------------
+  * 정리
+
+             git add hello.txt               git commit -m "메시지"
+  작업디렉터리 ---------------------> 스테이지 ------------------------> 로컬저장소
+  -hello.txt 추가                   hello.txt                      hello.txt 버전 1개 생성(first commit)
+  -hello문자열 추가
+
+  git restore hello.txt(hello문자열 취소)
+  git restore --staged hello.txt ( git add 취소 )
+--------------------------------------------------------------------------------
+
+    # git add와 git commit 한꺼번에 ( 반드시 tracked 파일이어야 된다. )
+     
+      git commit -a -m "메시지"
+      git commit -am "메시지"
+ 
+--------------------------------------------------------------------------------
+5. 버전 확인
+
+   $ git log
+   $ git log --oneline  # 한줄로 출력
+   $ git log -p    # 변경 내용 출력 , 빠져나오기: q, Pagedown, 화살표 키
+   $ git log --relative-date  # 현재 시간 기준으로 commit 경과된 시간 출력
+
+   C:\Users\User\git_tutorial\.git\refs\heads\ma조n # main 브랜치의 최신 commit 정보가 저장
+                                                     .git\HEAD가 참조
+   C:\Users\User\git_tutorial\.git\objects  # 해시값에 해당되는 40글자중 앞 2글자에 해당하는 폴더를 
+                                              만들고 나머지 38글자는 폴더안에 저장해서 해시값을 관리.
+
+-----------------------------------------------------------------------------------
+6. 커밋 수정 ( --amend )
+ 
+   -특징은 커밋을 만든 즉시 수정 가능하다.
+    예> 포함해야될 파일이 누락되거나 커밋메세지 수정
+
+   실습:
+      $ git commit -m "some commit"
+      $ touch world.txt 
+      $ git add world.txt
+      $ git commit --amend    # 자동으로 VSC 가 열리고 커밋메시지를 수정할 수 있게됨.
+                                커밋메시지 수정후 저장하고 파일 close하면 됨.
+      $ git log
+-----------------------------------------------------------------------------------
+7. 변경사항 비교
+
+                             git diff 
+      <----------------------------------------------------------------->
+
+  작업디렉터리 -----------------------> 스테이지 ---------------------------> 저장소
+                                       <------------------------------>    해시값3(HEAD)
+				            git diff --staged              해시값2
+                                                                           해시값1
+	   <--------------------------------------------------------->
+	          git diff HEAD (  git diff + git diff --staged )
+ 
+  -git diff: 작업디렉터리와 저장소비교
+  -git diff --staged : 스테이지와 저장소비교
+  -git diff HEAD :  git diff + git diff --staged  모두 포함
+  -git diff 해시값1  해시값2
+
+   실습:
+      $ mkdir git_diff
+      $ cd git_diff
+      $ git init   #.git 폴더 생성
+      $ touch hello.txt
+      $ echo "hello" >> hello.txt
+      $ git add hello.txt
+      $ git commit -m "first commit"
+
+      # 작업디렉터리 수정
+      $ echo "hello2" >> hello.txt
+
+      # 작업디렉터리와 저장소비교
+      $ git diff
+
+      # 스테이지와 저장소 비교
+      $ git add hello.txt
+       git diff --staged
+
+      # 작업디렉터리(hello3) + 스테이지(hello2) + 저장소(hello) 비교
+      $ echo "hello3" >> hello.txt
+      $ git diff HEAD
+
+      # 해시값비교
+      $ git commit -m "hello2 commit"
+      $ git add hello.txt
+      $ git commit -m "hello3 commit"
+
+      $ git diff 37cf9b5 a7c793d 
+      ------------------------------------------------
