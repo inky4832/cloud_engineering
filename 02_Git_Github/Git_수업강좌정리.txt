@@ -63,6 +63,7 @@ Git
     cat 파일명   # 파일내용 보기
    -------------------------
 
+    # 전역 사용자 설정
    $ git config --global user.name "inky4832"
    $ git config --global user.email "inky4832@daum.net"  # 반드시 github 계정과 일치
 
@@ -72,3 +73,104 @@ Git
 	[user]
 		name = inky4832
 		email = inky4832@daum.net
+
+  
+    # 전역 사용자 확인
+      
+      $ git config user.name
+      $ git config user.email
+
+   # 전역 사용자 삭제
+    
+   $ git config --global --unset user.name "inky4832"
+   $ git config --global --unset user.email "inky4832@daum.net"
+-----------------------------------------------------------------------------------
+##############
+ 로컬 저장소 생성 및 관리
+#############
+
+* git 관련 상태 3가지
+
+            git add test.txt                     git commit
+  작업디렉터리   --------------> 스테이지(staging area) -----------------> 로컬 저장소
+ ex.git_tutorial                 test.txt                            test.txt 버전으로 관리됨.
+                                                                     (해시값관리: 40글자 )
+   test.txt(관리대상)
+   a.txt
+   b.txt
+
+
+1. 저장소 생성
+ 
+  명령어: git init
+  
+  실습순서:
+    
+    $ mkdir git_tutorial
+    $ cd git_tutorial
+    $ git init   # 저장소 생성, .git 폴더가 생성됨
+
+2. 저장소 상태확인
+    $ git status # 3가지 상태 확인
+ 
+        On branch main   # 현재 main 브랜치에 있음
+        No commits yet   # 아직 커밋한 파일이 없다.
+        nothing to commit (create/copy files and use "git add" to track) # 커밋할 파일도 없다.
+
+  
+   # 파일 생성
+    touch hello.txt
+
+   $ git status
+        On branch main # 현재 main 브랜치에 있음
+	No commits yet # 아직 커밋한 파일이 없다.
+	Untracked files: # git이 한번도 버전관리 되지 않은 파일의미
+	  (use "git add <file>..." to include in what will be committed)
+		hello.txt
+	nothing added to commit but untracked files present (use "git add" to track)
+
+3. 추적시킬 파일 등록 ( 스테이징, 스테이지에 올린다. index 등록한다 라고 함 )
+
+  문법: 
+      git add 파일명, 파일명,... # 지정된 파일명 스테이징으로 
+      git add  .  # 현재 디렉터리 모든 파일을 스테이징으로
+            
+	      git add hello.txt
+  작업디렉터리   --------------> 스테이지(staging area) -----------------> 로컬 저장소
+ ex.git_tutorial                 hello.txt                        
+   hello.txt 
+  (untracked file)
+
+   실습:
+     $ git add hello.txt
+     $ git status
+      
+        On branch main # 현재 main 브랜치에 있음
+	No commits yet # 아직 커밋한 파일이 없다.
+	Changes to be committed: # hello.txt 앞으로 버전관리할 것임.
+	  (use "git rm --cached <file>..." to unstage)
+		new file:   hello.txt
+
+     #unstage
+       $ git rm --cached hello.txt
+       $ git status
+
+4. 버전 생성
+
+   문법: 
+       git commit + 커밋 메시지 지정
+
+       git commit -m 커밋메시지   <== 전역사용자 정보가 같이 추가됨 
+
+
+   	      git add hello.txt
+  작업디렉터리   --------------> 스테이지(staging area) -----------------> 로컬 저장소
+ ex.git_tutorial                 hello.txt                            hello.txt 버전 생성
+   hello.txt 
+  (untracked file)
+
+   실습:
+    
+     $ git commit -m "first commit"
+     $ git status
+     $ git log	
