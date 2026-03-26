@@ -336,3 +336,35 @@ Git
 
       $ git diff 37cf9b5 a7c793d 
       ------------------------------------------------
+-----------------------------------------------------------------------------------
+8. 불필요한 파일 제외
+
+  문법:
+       .gitignore 파일에 제외하고자 하는 파일 및 디렉터리 명시가능
+
+              git add .               
+  작업디렉터리 ---------------------> 스테이지 ------------------------> 로컬저장소
+  -hello.txt 추가                                       
+   hello.txt
+   hello.txt.bak
+   sercret.txt
+   /tmp
+
+   실습: 
+     $ mkdri temp
+     $ touch secrets.txt
+
+     $ git add .
+
+     $ touch .gitignore
+     $ touch secrets2.txt
+     $ echo "secrets2.txt" >> .gitignore
+     $ git add .   $ secrets2.txt 제외
+
+     오타가 아니어도 .gitignore 안될 때는 캐시때문임.
+     해결: git rm -r --cached .
+
+     .gitignore 제공 사이트
+     나중에 eclips 또는 Intellij 또는 VSC 버전관리시 사용
+     https://www.toptal.com/developers/gitignore
+
