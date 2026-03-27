@@ -613,3 +613,91 @@ Git
         git commit -am "final commit"
 	cat hello.txt
 -------------------------------------------------------------------------
+Github 정리
+
+1. 개요
+   Git의 원격 저장소를 제공하는 클라우드 서비스임.
+   저장소 기능 및 추가 기능도 제공됨. ( CI/CD 기능 지원: Github Actions )
+
+2. github에 저장소 생성
+
+  가. 회원가입 및 로그인 
+  나. 상단의 repositories > New 선택 > 이름: github_test
+  다. 로컬 저장소에서 원격저장소로 데이터를 올리는 방법(push) 가이드
+
+      a. 로컬저장소가 아직 없는 경우
+               echo "# github_test" >> README.md
+		git init
+		git add README.md
+		git commit -m "first commit"
+		git branch -M main # 브랜치이름 변경
+		git remote add origin https://github.com/inky4832/github_test.git
+		git push -u origin main
+
+      b. 로컬저장소가 있는 경우
+               git remote add origin https://github.com/inky4832/github_test.git
+		git branch -M main
+		git push -u origin main
+-------------------------------------------------------------------------------------
+###########################################
+로컬저장소에 있는 커밋데이터를 원격 저장소로 보내기 
+###########################################
+
+ 1. 실습1 ( 로컬저장소----->원격저장소 )
+
+     가. github에 저장소 생성
+         - 아무것도 체크하지 말것.
+
+     나. 로컬저장소 생성하고 커밋
+
+         mkdir git_remote
+	 cd git_remote
+	 git init
+	 touch hello.txt
+	 echo "hello" >> hello.txt
+	 git add .
+	 git commit -m "hello commit"
+
+     
+     다. 로컬과 원격연결 및 확인
+       
+       git remote add origin https://github.com/inky4832/github_test.git
+
+       git remote -v  #원격 연결 상태 확인
+
+       git remote     #원격 저장소 별칭 보기
+         origin
+	
+       git remote rm origin # 원결 연결 끊기
+
+     라. push하기
+
+         git branch -M main # 브랜치이름 변경
+         git push -u origin main  # -u: upstream, origin에 main브랜치가 생성됨
+
+   -------------------------------------------
+   실습2 ( hotfix 브랜치를 push 하기 )
+
+      $ git branch hotfix
+      $ git switch hotfix
+      
+      # hotfix 작업
+        echo "hello3" >> hello.txt
+	git commit -am "hello3 commit"
+
+	git remote -v
+        git push -u origin hotfix  # -u: upstream 생략가능, origin에 hotfix 브랜치가 생성됨
+
+    
+     * 최종적으로 병합처리
+       가. 로컬에서 병합하고 push
+
+          #main 처리
+	  git switch main
+	  git merge hotfix
+	  git push -u origin main
+
+ 
+      나. 원격에서 병합처리 ( PullRequest: PR ) (*****************
+	   main
+	   hotfix
