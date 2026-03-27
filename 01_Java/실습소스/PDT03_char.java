@@ -31,6 +31,8 @@ public class PDT03_char {
 		System.out.println("안녕\'하세요");
 		System.out.println("안녕\\하세요");
 		System.out.println("c:\\amp");
+		System.out.print('\t');
+		System.out.print("adasdfs");
 		
 		
 		
