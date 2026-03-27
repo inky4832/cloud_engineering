@@ -449,15 +449,12 @@ Git
      $ echo "hello2" >> hello.txt
      $ git commit -am "hello2 commit"
 
-     $ git revert d17308b  # 기준이 필요한테 맨 처음 만든 커밋은 기준이 없기 때문에 안됨.
-                             반드시 2번째 이후부터 지정.
+     $ git revert d17308b  # 기준이 필요한테 맨 처음 만든 커밋은 기준이 없기 때문에 revert 실행안됨
+                             반드시 2번째 커밋 이후부터 지정해야 됨.
         hint:  git add/rm  # git add 선택하면 hello.txt 유지
                              git rm 선택하면 hello.txt 제거
      $ git add . # git add 선택하면 hello.txt 유지
      $ git revert --continue # vsc 열림. 커밋 메시지 작성하고 파일저장.
-                              만약 vsc 안열리면  
-			      git config --global core.editor "code --wait" 다시 실행
-			      (필요시 커밋메시지를 입력할 때 사용할 에디터 등록하는 방법 )
 
      $ git log --oneline
         
@@ -513,11 +510,106 @@ Git
      # hotfix에 새로운 작업 추가 
        $ git switch hotfix
        $ echo "hello2" >> hello.txt
-       $ git commit -am "hello commit"  <== main 과 hotfix가 다름.
+       $ git commit -am "hello2 commit"  <== main 과 hotfix가 다름.
 
      # main 기준으로 hotfix 차이점 출력
      $ git log main..hotfix
 
      # main에서 작업. main에 브랜치변경작업을 병합
      $ git merge  hotfix
-       git branch -D hotfix  <== 병합후에는 hotfix 브랜치 삭제
+       git branch -D hotfix  <== 병합후에는 hotfix 브랜치 삭제, git reflog 로 복구가능
+-----------------------------------------------------------------------------------
+3. 병합 종류
+
+  1) Fast-forward ( 빨리감기 병합 )
+      main브랜치에서 분기한 후(hotfix), hotfix에서 작업을 하고,main브랜치에서는 추가작업 없이 병합했을 때
+      Fast-forward 방식으로 병합된다.
+
+      실습:
+       $ mkdir git_merge
+         cd git_merge
+	 git init
+       
+       #main작업
+         touch hello.txt
+	 echo "hello" >> hello.txt
+	 git add .
+	 git commit -m "hello commit" <--HEAD
+	 git branch hotfix
+	 git switch hotfix
+
+       #hotfix작업
+	  echo "hello2" >> hello.txt
+	  git commit -am "hello2 commit" <--HEAD
+	   git switch main
+	  
+       #main작업
+          git merge hotfix  # Fast-forward 메시지 확인
+	  cat hello.txt
+	
+
+  2) 병합커밋
+    
+      main 브랜치에서도 변경사항이 발생된 상태에서 병합방법으로 
+      최종 커밋이 필요함.
+
+
+    # 현재는 main과 hotfix간의 버전이 똑같음.
+
+       #main작업
+         touch world.txt
+	 git add .
+	 git commit -m "world commit"
+	 git switch hotfix
+
+      #hotfix작업
+	  touch happy.txt
+          git add .
+  	  git commit -m "happy commit"
+	  git switch main
+
+       #main작업
+          git merge hotfix   # 커밋해야되기 때문에 VSC 오픈되고 커밋메시지 작성후 close하면 병합커밋이 완료됨
+	   Merge made by the 'ort' strategy.
+
+
+  3) 병합충돌
+
+      같은 파일의 같은라인을 서로 다르게 수정하고 병합할 때 발생됨.
+
+      실습:
+
+        mkdir git_conflict
+	cd git_conflict
+	git init
+
+      #main작업
+         touch hello.txt
+	 echo "hello" >> hello.txt
+	 git add .
+	 git commit -m "hello commit" 
+	 git branch hotfix
+	 git switch hotfix  
+       
+      #hotfix작업
+         vsc 열고 hello.txt 수정. hello2 로 변경하고 저장.
+	 echo "hotfix" >> hello.txt
+	 cat hello.txt
+	   hello2
+	   hotfix
+	 git commit -am "hotfix commit"
+	 git switch main
+
+      #main작업
+        echo "main" >> hello.txt
+	cat hello.txt
+	 hello
+	 main
+	git commit -am "main commit"
+
+	git merge hotfix # 충돌발생, VCS열고 충돌직접 해결(코드수정)
+	                  코드수정이 되었기 때문에 커밋해야 됨.
+
+        git commit -am "final commit"
+	cat hello.txt
+-------------------------------------------------------------------------
