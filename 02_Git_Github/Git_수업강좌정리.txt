@@ -820,3 +820,34 @@ Github 정리
 
       git branch
 ------------------------------------------------------------------------------
+Eclipse에서 버전관리
+
+1. 해당 프로젝트를 로컬저장소로 만들기
+
+ #cmd
+ cd  C:\cloud_engineering\Java21_study\eclipse\workspace\HelloTest
+
+ git init  <== .git 디렉터리 생성됨
+
+ git status
+   
+    Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .classpath
+        .project
+        .settings/
+        bin/
+        src/
+
+ .gitignore 생성하고 내용추가
+   ==> https://www.gitignore.io/ 
+
+
+git add .
+git commit -m "HelloTest Project"
+
+# 원격저장소 생성: java21
+
+git remote add origin https://github.com/inky4832/java21.git
+git branch -M main
+git push -u origin main
