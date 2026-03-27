@@ -723,3 +723,67 @@ Github 정리
       나. 원격에서 병합처리 ( PullRequest: PR ) (*****************
 	   main
 	   hotfix
+
+###########################################
+원격저장소에 있는 커밋데이터를 로컬 저장소로 보내기 
+###########################################
+
+ 방법2가지
+
+  1) git fetch + 로컬에서 병합
+
+     #순서작업은 다음과 같다.
+      git fetch origin main # 원격의 main브랜치에서 커밋내역만 전달됨
+      git checkout origin/main
+      git merge origin/main  main
+
+
+     실습:
+       가. 원격 저장소 생성: yyy
+       나. 로컬 저장소 생성과 push
+
+           mkdir git_fetch
+	   cd git_fetch
+	   git init
+
+	   touch hello.txt
+	   echo "hello" >> hello.txt
+	   git add .
+	   git commit -m "hello commit"
+
+
+	   git remote add origin https://github.com/inky4832/yyy.git
+	   git push -u origin main      # 원격과 로컬 sync 맞음
+
+      다. 원격저장소 변경
+          
+	    world.txt 파일 추가하고 커밋
+
+
+      라. 로컬에서 수정 ( 원격저장소변경상태를 아직 모른다고 가정)
+         
+           echo "hello2" >> hello.txt
+	   git commit -am "hello2 commit"
+
+	   git push -u origin main  # ! [rejected] 발생
+
+
+      마. 원격의 커밋 정보만 얻기
+
+          git fetch origin main  # 원격 커밋정보만 얻음
+	  git checkout origin/main  # 원격 커밋정보 얻었기 때문에 checkout 및 조회 가능
+
+	  git log
+
+	  git switch main            # 병합하기 위해서 main 브랜치로 변경
+	  git merge main origin/main # main 기준으로 원격 origin/main 병합,
+	                               VSC 자동으로 오픈되어 커밋메시지 지정
+	  
+	  git log --oneline
+
+
+
+
+
+  2) git pull ( git fetch + 로컬에서 병합)
+  
