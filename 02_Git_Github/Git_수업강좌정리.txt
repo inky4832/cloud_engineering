@@ -783,7 +783,15 @@ Github 정리
 
 
 
-
-
   2) git pull ( git fetch + 로컬에서 병합)
   
+     가. 원격저장소 변경
+
+         happy.txt 추가하고 커밋
+
+
+     나. 로컬에서 pull ( fetch + merge )
+
+        git pull origin main
+
+
