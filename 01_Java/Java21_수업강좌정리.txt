@@ -510,6 +510,95 @@ public class Hello {
        	    ex.          정수 + 실수 ==> 실수
 
 
+       d. 문자열 + (비)문자열 =====> 문자열로 반환됨
+	 
+	   ex.   "hello"+"world" =========> "helloworld"
+	         "hello"+10 =========> "hello10"
 
 
     나. 강제 형변환 ( 명시적 형변환 )
+
+      - 형변환 연산자인 (타입) 사용
+       
+       문법:
+             작은타입 = (작은타입)큰타입;
+
+	 ex. 
+                  short s = 10;
+	          short s2 =20;
+		  short s3 =(short)(s+s2); 
+
+
+
+6. 연산자 (operator)
+
+  1. 산술연산자
+
+     + : 더하기
+     - : 빼기
+     * : 곱하기
+     / : 나누기 ex. 10/3 => 3 (기본)  10/3.0 => 3.333333
+     % : 나머지 ex.  10/3 => 1
+
+  
+  2. 대입연산자
+     - 변수에 임의의 값을 할당(대입)할 때 사용
+
+     a=b  : a에 b를 저장(할당, 대입)
+
+     a+=b : a와 b를 더해서 다시 a에 할당
+            a = a + b 동일
+
+     a-=b : a에서 b를 빼서 다시 a에 할당
+            a = a - b 동일
+
+     a*=b : a와 b를 곱해서 다시 a에 할당
+            a = a * b 동일
+
+     a/=b : a와 b를 나누어서 다시 a에 할당
+            a = a / b 동일
+
+     a%=b : a와 b를 나누어서 나머지를 다시 a에 할당
+            a = a % b 동일
+
+  3. 비교 연산자
+    
+     - 값을 비교하는 기능, 결과값은 반드시 논리값(true/false)로 반환, boolean타입으로 반환(*********)
+
+     a==b  :  a와 b 가 같냐?  
+     a!=b  :  a와 b 가 같지않냐?
+     
+     a>b  :  a가 b보다 크냐?  
+     a>=b  :  a가 b보다 크거나 같냐? 
+     
+     a<b  :  a가 b보다 작냐?  
+     a<=b  :  a가 b보다 작거나 같냐?  
+
+  
+  4. 논리 연산자
+
+    - 논리값(true,false)을 이용해서 연산하는 기능. 결과값은 반드시 논리값(true/false)로 반환, 
+      boolean타입으로 반환(*********)
+
+
+    1) &&
+       - and 연산자 (그리고)
+
+	true && true   :   true
+	true && false  :   false
+	false && true  :   false
+	false && false :   false
+
+    2) ||
+       - or 연산자 ( 또는 )
+	
+	true || true   :   true
+	true || false  :   true
+	false || true  :   true
+	false || false :   false
+
+    3) ! 
+       - not 연산자 (부정 연산자)
+
+       !true  : false
+       !false : true
