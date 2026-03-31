@@ -841,7 +841,7 @@ public class Hello {
         ( byte, short , int , char , String , enum )
 
 
- switch expression ( JDk14 부터 지원 )
+  switch expression ( JDk14 부터 지원 )
 
    - break 없음
    - 일치되는 case의 반환값이 변수에 저장됨.
