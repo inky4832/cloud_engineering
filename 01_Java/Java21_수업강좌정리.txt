@@ -784,4 +784,75 @@ public class Hello {
        }else if(조건식3){
 	  문장3;  // 조건식1은 false, 조건식2는 false, 조건식3은 true
        }else{
+	  문장4;   // 조건식1은 false, 조건식2는 false, 조건식3은 false
+       }	
 
+
+5. 변수의 블럭 scope
+
+    개념: 자바의 변수는 기본적으로 블럭 scope를 따름.
+         즉, 블럭({})안에서 선언된 변수는 블럭안에서만 사용이 가능함.
+
+     ex.
+
+         if(true){
+	    int num = 10; //로컬변수	
+		
+	 }
+	 System.out.println(num); // 에러, 사용불가
+  ------------------------------------------------------
+	 만약에 외부에서 num을 사용해야 한다면?
+ 
+	  int num = 0; // 초기화
+          if(true){
+	    num = 10; // 새로운 값 할당
+		
+	 }
+	 System.out.println(num); // 사용 가능
+
+
+
+6. switch 문
+
+  용도:  조건이 여러개인 경우.
+        조건에 사용되는 연산자가 없고 내부적으로 == 비교함.
+
+  문법:
+
+	// 일치하는 case문 이후의 문장이 모두 실행됨.
+        switch(변수){
+	  case 값1: 문장1;
+          case 값2: 문장2;
+	  case 값3: 문장3;
+          default: 기본문장;
+	}
+
+	// 일치하는 case문만 실행됨. ( 일반적인 switch 문 의미 )
+        switch(변수){
+	  case 값1: 문장1; break;
+          case 값2: 문장2; break;
+	  case 값3: 문장3; break;
+          default: 기본문장;
+	}
+
+  특징:
+      - break 문은 옵션
+      - 변수에 사용 가능한 데이터 형은 6개만 가능.
+        ( byte, short , int , char , String , enum )
+
+
+ switch expression ( JDk14 부터 지원 )
+
+   - break 없음
+   - 일치되는 case의 반환값이 변수에 저장됨.
+
+   문법:
+       
+         변수 = switch(변수){
+          
+	    case 비교값1 -> 반환값1;
+            case 비교값2 -> 반환값2;
+	    default -> 기본값
+	 }
+
+    
