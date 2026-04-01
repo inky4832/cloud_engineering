@@ -1098,7 +1098,7 @@ public class Hello {
      - 배열자체는 참조형이고 저장되는 데이터는 기본형/참조형 모두 가능
 
   
-  2) 사용방법
+  2) 사용방법-1 ( new 이용 )
 
     가. 배열선언
 
@@ -1144,4 +1144,121 @@ public class Hello {
 	     
 	      String name="홍길동";
 	      name.length();
+
+ 
+   라. 배열 출력
+
+     a. 일반 for문
+        - 문제 발생 여지가 많다.
+           for(int i=0; i < names.length ; i++) {
+			System.out.printf("names[%d]=%s \n",i, names[i]);
+	   }
+
+     b. 향상된 for문 
+
+         문법:
+	      for( 변수: 배열명  ){
+                 System.out.printf(변수);
+	      }
+
+	      int [] num = { 10,20,30};
+	      for( int n : num ){
+		 sysout(n);
+	      }
+  
+   2) 사용방법-2 ( 실제값(리터럴:literal) 이용 )
+
+      문법:
+            데이터형 [] 배열명 = { 값, 값2, ... };
+
+	    ex.  가
+	         String [] name = {"홍길동","이순신"};
+		
+		// 선언과 생성 분리 불가
+		int [] num;
+		 num = {1,2,3};
+
+   2) 사용방법-3 (  new + 리터럴 )
+
+      문법:
+            데이터형 [] 배열명;
+
+	    배열명 = new int[]{값, 값2,...};   // 명시적 크기지정 불가
+	   
+	   ex.   int [] num;
+	         num = new int[]{1,2,3};
+
+		 String [] name = new String[]{"홍길동","이순신"};
+
+	    
 ----------------------------------------------------------------------------
+4. 2차원 배열
+
+  
+  구조:
+                    
+           new          (행 정보)
+    배열명 ---------->   -          new                ( 열정보)
+                       _  -------------------------> |  |   | 
+
+		       _
+
+                      
+  
+
+  문법:
+
+       1) 2차원 배열 선언
+
+        문법:   데이터형 [][] 배열명;
+	
+	  ex.   int [][] num;
+
+       2) 행 배열 생성
+
+        문법:  배열명 = new 데이터형[행크기][];
+
+	  ex.  num = new int[2][];
+
+	    1행참조:  num[0]
+	    2행참조:  num[1]
+
+       3) 열 생성 ( 자동초기화)
+
+         문법:  배열명[행idx] = new 데이터형[열크기];
+
+	 ex.   num[0] = new int[2];
+	       num[1] = new int[2];
+
+	  1행 1열 참조:  num[0][0];
+	  1행 2열 참조:  num[0][1];
+	  2행 1열 참조:  num[1][0];
+	  2행 2열 참조:  num[1][1];
+
+
+       4) 배열 초기화
+          num[0][0]= 1;
+	  num[0][1]= 2;
+	  num[1][0]= 3;
+	  num[1][1]= 4;
+
+
+       5) 반복문 출력
+
+         가. 일반 for 문
+
+	   for(int i=0; i < num.length; i++ ){  // 행 반복
+             for(int j=0; j < num[i].length; j++){ // 열 반복
+		System.out.println(num[i][j]);
+	     }
+	   }
+
+	나. 향상된 for 문
+	    
+	    int [][] num;
+
+	   for( int [] k: num );{ // 행반복
+	      for( int x : k){   // 열반복
+	       System.out.println(x);
+	      }
+	   }
