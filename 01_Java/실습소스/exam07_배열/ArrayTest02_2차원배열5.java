@@ -2,7 +2,7 @@ package exam07_배열;
 
 public class ArrayTest02_2차원배열5 {
 
-	public static void main(String[] args) {
+	public static void main(String [] args) {
 
 		//2차원 배열 -3 ( new + 리터럴 )
 		
