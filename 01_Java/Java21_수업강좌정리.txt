@@ -1971,3 +1971,35 @@ public class Hello {
 	UML은 빈 마름모로 표현
 
   2) is a  관계
+
+     - 클래스들을 작성: 고양이, 강아지, 애완동물, 학생, 중학생,엔지니어, 사원,...
+
+      ex. 고양이 is a 애완동물
+          강아지 is a 애완동물 
+          중학생 is a 학생
+	  엔지니어 is a 사원
+
+      - is a 관계가 자바의 상속관계(inheritance)임.
+
+      - 상속(is a )관계를 자바로 표현?
+        extends 키워드 이용
+
+	  ex.  고양이(Cat) is a 애완동물(Pet)
+
+	    
+	     public class Pet{}  // Pet extends Object와 동일
+
+	     public class Cat extends Pet{}
+
+	     public class Dog extends 용{}
+
+	 
+      -상속특징:
+         부모와 자식간의 관계임.
+	 반드시 is a 관계가 성립.
+	 extends 키워드 이용
+	 단일상속(single inheritance)만 지원.<== 계층구조 명확
+	 명시적으로 extends 가 없는 클래스들은 자동으로 extends Object가 지정됨. ( Object 클래스를 최상위클래스 라고 부름)
+	 상속을 UML 표기는 삼각형+실선 으로 표현.
+	 상속이 되면 부모의 멤버(변수,메서드)를 자식이 선언없이 사용이 가능해짐. ( 재사용성 향상 )
+	 상속이 불가한 2가지는 부모의 생성자와 private 지정된 멤버(변수,메서드)임.
