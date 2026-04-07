@@ -2193,3 +2193,52 @@ public class Hello {
      6) 다형성을 적용한 경우, 실제 new 한 타입인지 확인하는 연산자가 제공됨.
 
         문법:   e instanceof Engineer <== true/false
+
+------------------------------------------------
+8일차 2026-04-07
+
+1. package 와 import 문
+
+   1)package
+
+     용도: 클래스 파일 관리 ( 윈도우 폴더와 비슷한 기능 )
+     문법:
+          package 패키지명;
+	  package 패키지명.sub패키지명...;
+ 
+     특징: - 중복되지 않도록 유일한 값을 지정. ( 관례적으로 도메인. ex. google.com )
+           도메인을 거꾸로 지정해서 사용 가능
+	   ex. package com.google;
+	 - package 지정하지 않으면 default 패키지로 처리됨.
+         - 패키지가 다르면 클래스들간에 접근이 불가 ( 해결: import 문 이용 )
+           https://docs.oracle.com/en/java/javase/21/docs/api/index.html
+         - Java API(만들어진 클래스)들도 모두 패키지로 제공됨. ex. java.lang, java,io, java.util,....
+	   따라서 Java API 클래스를 사용하기 위해서는 패키지가 서로 다르기 때문에 반드시 import해야 된다.
+	   단, java.lang은 import 안해도 됨.
+
+         -패키지가 다르면 동일한 클래스명 지정가능
+	 -단 한번 지정
+
+    2)import
+
+      용도: 서로 다른 패키지에서 클래스를 접근하는 방법 ( 클래스가 있는 경로 지정 )
+      문법:
+           import 패키지명.클래스명;
+           import 패키지명.서브패키지.클래스명;
+
+      특징: import문 여러버 사용 가능
+
+
+
+2. 접근지정자 (access modifier )
+ 
+   용도: 클래스들간의 접근를 제한하는 방법
+
+   4가지 레벨:
+
+
+                     같은클래스인 경우   같은패키지
+   public 
+   protected
+       (default)
+   private
