@@ -2356,16 +2356,28 @@ public class Hello {
   3) 특징
     - 불완전한 객체이기 때문에 직접 new 불가.
       따라서 불완전한 객체 ----------> 완성 클래스로 만든후에 사용해야 된다.
-
-
+    - implements 키워드 이용 (구현 한다고 말함)
+    - 다중 구현이 가능
+    - 인터페이스간에는 상속(다중상속,extends ) 가능
+    - implments 받은 concrete 클래스는 반드시 인터페이스의 추상 메서드를 재정의해야 됨.(강제성 부여 )
+    - 다형성 적용 가능
   
   4) 불완전한 객체 ----------> 완성 클래스로 만드는 방법
      ==> 구현(implments) + 오버라이딩 메서드
     
 
-          인터페이스:  public abstract void a();
+		  인터페이스  인터페이스
+			|
+			| 상속관계(다중상속)
+			| extends
+			|
+   클래스(B)    인터페이스     인터페이스:  public abstract void a();
+		    |
+		    | 다중구현 가능
+		    | implements 키워드
+		    |
+	  클래스스(A)concrete 클래스)
+	        반드시 public void a(){} 재정의 필수.
 
 
-
-
-	  클래스(concrete 클래스)
+   public class A extends B  implemnents 인터페이스, 인터페이스{}
