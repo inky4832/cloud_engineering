@@ -2156,7 +2156,7 @@ public class Hello {
 		method2(new Engineer("이순신", 4300, "자바"));
 		method2(new Manager("유관순", 4000, "관리"));
  
-     4) 동적 타이핑(dynamic typing )
+     4) 동적 타이핑(dynamic typing ) 동적 바인딩
 
         개념: 컴파일 시점에 알고 있는 메서드와
 	    실행시점에 알고 있는 메서드가 동적으로 변경된다는 개념임.
@@ -2226,7 +2226,10 @@ public class Hello {
            import 패키지명.클래스명;
            import 패키지명.서브패키지.클래스명;
 
-      특징: import문 여러버 사용 가능
+      특징: -import문 여러버 사용 가능
+          - import문 없이 직접 패키지명 지정 가능
+	     ex.  p1.MyHello
+	         java.util.Random r = new java.util.Random();
 
 
 
@@ -2237,8 +2240,9 @@ public class Hello {
    4가지 레벨:
 
 
-                     같은클래스인 경우   같은패키지
-   public 
-   protected
-       (default)
-   private
+                     같은클래스인 경우     같은패키지의 다른클래스   다른패키지 상속관계   다른패키지의 다른클래스
+	 -------------------------------------------------------------------------
+   public             가능                 가능	        가능		가능
+   protected          가능                 가능             가능             불가
+       (default)      가능                 가능             불가              불가
+   private            가능                 불가             불가              불가
