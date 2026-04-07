@@ -2286,8 +2286,13 @@ public class Hello {
       - 추상메서드에서 abstract 키워드 필수 ( 생략불가)
         나중에 배울 인터페이스에서는 생략 가능.
 
+      - 단일상속(single inheritance)
+      - UML은 삼각형 + 실선
+      - 추상 메서드는 UML표기법으로 이탤릭체로 표기됨
+
+
    4) 완성된클래스로 만드는 방법
-      => 상속 + 오버라이딩메서드 이용
+      => 상속(extends) + 오버라이딩메서드 이용
 
 
         ex. 
@@ -2305,3 +2310,62 @@ public class Hello {
 
    5) 추상클래스 용도
      - 하위 클래스에서 사용하는 메서드를 일치시키기 위한 목적. ( 통일성 )
+
+--------------------------------------------------------------
+4. 인터페이스 (interface ) - 매우 중요함(***********************)
+
+ 1) 문법:
+
+      public interface 인터페이스명{
+
+	    //구성요소 4가지
+	     상수
+	     추상메서드 ( abstract 생략가능 )
+	     default 메서드
+	     static 메서드
+      }
+
+      저장파일명: 인터페이스명.java
+
+    
+ 2) 구성요소
+
+   가. 상수
+          int NUM = 20; 지정하면 자동으로 public static final이 지정됨.
+	  //public static final int NUM = 20; 동일
+
+	  외부에서 접근방법:  인터페이스명.NUM 
+
+  나. 추상메서드
+           void a(); 지정하면 public abstract 지정됨
+	   // public abstract void a(); 동일
+	   // abstract 생략 가능
+
+
+  다. default 메서드
+        
+	  문법:  public default 리턴타입 메서드명(){ //기능 구체화 }
+	  특징: 동작은 concrete 메서드처럼 동작됨.
+	      즉 new 이후에 사용 가능.
+
+  라. static 메서드
+         문법:  public static 리턴타입 메서드명(){ //기능 구체화 }
+	 특징: 동작은 일반적인 static 메서드처럼 동작됨.
+	     new 없이 클래스명.static  (인터페이스명.static )메서드 호출.
+
+  3) 특징
+    - 불완전한 객체이기 때문에 직접 new 불가.
+      따라서 불완전한 객체 ----------> 완성 클래스로 만든후에 사용해야 된다.
+
+
+  
+  4) 불완전한 객체 ----------> 완성 클래스로 만드는 방법
+     ==> 구현(implments) + 오버라이딩 메서드
+    
+
+          인터페이스:  public abstract void a();
+
+
+
+
+	  클래스(concrete 클래스)
