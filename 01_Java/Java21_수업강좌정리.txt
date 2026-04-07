@@ -2016,8 +2016,8 @@ public class Hello {
                      | super() // 자동으로 삽입됨, 명시적으로 호출 가능.
 		     |
              자식클래스
-	      자식생성자
-
+	      자식생성자     <== new 자식생성자();
+               this()
 
    3) 오버라이딩( Overriding ) 메서드 : 메서드 재정의 의미.
      
@@ -2098,6 +2098,9 @@ public class Hello {
 	          Cat c = new Cat();
 		  System.out.println(c); // 참조변수 출력
 		  System.out.println(c.toString());
+		  String n = "hello";
+		  System.out.println(n); 
+		  System.out.println(n.toString());
     
     
    - 결론: 재사용 클래스를 만들 때 Object의 toString() 재정의해서 사용하자.
@@ -2112,7 +2115,7 @@ public class Hello {
      다. 다형성( Polymorphims )
 
    2) 개념
-     하나의 참조변수가 타입이 다른 여러 인스턴스를 참조하는 능력.
+     하나의 참조변수(부모타입)가 타입이 다른 여러 인스턴스(자식타입)를 참조(관리)하는 능력.
      목적: 부모 타입의 변수 하나로 모두 관리하자. (재사용성)
       ex.
          반드시 A와 B, A와 C간에 상속관계 전제됨.
@@ -2145,3 +2148,48 @@ public class Hello {
 	         확장하면 Object 타입으로 배열을 만들면, 자바의 모든 데이터 저장가능. (*****************)
 
 	나. 메서드 파라미터 타입 (*************)
+
+	        public static void method2(Employee e) {}
+
+	        //참조형
+		method2(new Employee("홍길동", 2000));
+		method2(new Engineer("이순신", 4300, "자바"));
+		method2(new Manager("유관순", 4000, "관리"));
+ 
+     4) 동적 타이핑(dynamic typing )
+
+        개념: 컴파일 시점에 알고 있는 메서드와
+	    실행시점에 알고 있는 메서드가 동적으로 변경된다는 개념임.
+	    ex.   
+		
+		public class Employee{
+
+		    ..
+		    public void a(){
+			s.o.p("employee");
+		    }
+		}
+		public class Manager extends Employee{
+		    ..
+		    @Overriding
+		    public void a(){
+		      s.o.p("Manager");
+		    }
+		}
+
+		//다형성
+	        Employee e = new Manager("유관순", 4000, "관리");
+		e.a();  // Manager 출력
+			// 컴파일시에는 Employee의 a()로 인식하고
+			   실제 실행시에는 Manager의 a()를 실행
+
+        
+     5) 부모에 없고 자식에서만 추가된 변수 또는 메서드를 참조하기 위해서는
+        반드시 자식타입으로 형변환해야된다.
+
+	  작은타입 = (작은타입)e;
+
+
+     6) 다형성을 적용한 경우, 실제 new 한 타입인지 확인하는 연산자가 제공됨.
+
+        문법:   e instanceof Engineer <== true/false
