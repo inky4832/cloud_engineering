@@ -2246,3 +2246,32 @@ public class Hello {
    protected          가능                 가능             가능             불가
        (default)      가능                 가능             불가              불가
    private            가능                 불가             불가              불가
+
+ 
+3. 추상클래스 ( abstract class )
+
+   1) 문법:
+          public class 클래스명{  <== concrete 클래스 ( 어떤 기능처리를 할지 구체화되어 정해져 있는 클래스, 완성된 클래스 )
+	       //구성요소
+	       변수
+	       메서드 ( concrete 메서드 )
+	       생성자
+		
+	  }
+
+          public abstract class 클래스명{ <== abstract 클래스 ( 어떤 기능처리를 할지 아직 구체화되지 않은 클래스, 미완성된 클래스)
+              //구성요소
+	       변수
+	       메서드 ( concrete 메서드 )
+	       생성자
+	       추상메서드(abstract method)
+	  }
+
+   2) concrete 메서드 vs abstract 메서드
+
+       concrete 메서드 문법:
+                          public 리턴타입 메서드명([파라미터,..]){ //메서드 동작 구현    }
+
+        abstract 메서드 문법: 
+
+	                  public abstract 리턴타입 메서드명([파라미터,..]);  <=== 메서드 동작이 아직 미정인 상태
