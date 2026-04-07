@@ -9,7 +9,7 @@ public class AbstractChildClass extends AbstractClass{
 
 	@Override
 	public void c() {
-		a();
+		//a();
 	}
 
 }
