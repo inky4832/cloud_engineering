@@ -65,6 +65,8 @@ public class StringTest2 {
 		System.out.println("13. 비문자열 ========> 문자열:" + String.valueOf(true)); // "10"
 		System.out.println("13. 비문자열 ========> 문자열:" + String.valueOf(new char[] {'A','B'})); // "AB"
 		
+		//원본 문자열의 변경 여부
+		System.out.println(s);
 		
 	}
 
