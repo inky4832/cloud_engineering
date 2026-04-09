@@ -2790,5 +2790,35 @@ public class Hello {
 
 
   6)Wrapper클래스
+	
+     기본             Wrapper클래스
+                    ==> 클래스안 정의된 메서드 및 상수를 잘 활용하자.
+    -----------------------------
+     byte            Byte
+     short           Short
+     int             Integer
+     long            Long
+
+     float           Float
+     double          Double
+
+     char            Character
+
+     boolean         Boolean
+
+   대표:  "10" --> 10
+        Integer.parseInt("10");
+
+	//4byte범위의 상수제공
+	Integer.MIN_VALUE
+	Integer.MAX_VALUE
+
+    // 기본형과 참조형(wrapper) 서로 쉽게 호환되도록 지원'
+	int n = 10;
+//		Integer n2 = new Integer(10);
+	
+	Integer n2 = n;  // 참조형 = 기본형 <== 오토박싱(auto boxing)
+	int n3 = n2;     // 기본형 = 참조형 <== 오토언박싱(auto unboxing)
+
   7)enum
   8)Random
