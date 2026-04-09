@@ -3022,3 +3022,41 @@ public class Hello {
     개념: 시스템이 봤을때는 예외가 아닌 경우, 
         하지만 개발자가 봤을때는 예외라고 간주할 수 있는 경우에 명시적으로 예외를 발생시킬 수 있음.
 
+    문법:
+        if(조건식)throw new 사용자정의예외클래스(예외메시지);
+
+
+4. 사용자 정의 예외 클래스
+
+   개념: 명시적으로 예외발생시 사용됨.
+
+   문법: 
+           Exception
+	      |
+	      |
+	      |
+	   사용자정의예외클래스
+
+ 
+    ex.  
+         Exception
+             |
+	     |
+	     |
+         InSufficentBalanceException.java
+
+	    pubic InSufficentBalanceException(String mesg){
+		
+	    }
+
+	     
+5.  상속관계의 throws 관련 ( 재정의 관련 )
+
+  부모:
+        public void a()throws 예외클래스{}
+
+
+  자식: 
+         public void a()        <== 자식에서는 부모가 throws 한 예외클래스와 같거나
+	                            계층적으로 하위클래스만 지정 가능.
+				    즉 축소되는 방향으로 지정.
