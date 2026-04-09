@@ -2,7 +2,6 @@ package exam18_예외처리;
 
 //계좌
 class Account{
-	
 	int balance=100; //잔고
 	//출금
 	public void withdraw(int amt)throws InSufficentBalanceException {
