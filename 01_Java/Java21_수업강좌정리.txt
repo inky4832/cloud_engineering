@@ -3181,10 +3181,13 @@ public class Hello {
 
 
 4. 표준 API 함수적 인터페이스
+   
+    @FunctionalInterface 어노테이션이 지원됨.
+    따라서 추상메서드 반드시 한개만 존재함.
 
    1) 개념
      - 메서드의 동작 방식에 따른 4가지 종류가 있음.
-       가. 파라미터없고 리턴값 없는 경우
+       가. 파라미터없고 리턴값 없는 경우 ( 지원안됨)
        나. 파라미터있고 리턴값 없는 경우 ( Consumer:파라미터 한개(T 타입)
                                BiConsumer:파라미터 두개(T,U)
 			       IntConsumer:파라미터 한개(int 타입)
@@ -3218,6 +3221,15 @@ public class Hello {
 				IntBinaryOperator: 파라미터 두개(int, int), 리터타입 int
                                 IntUnaryOperator : 파라미터 한개(int), 리터타입 int
 				UnaryOperator<T>: 파라미터 한개(T), 리터타입 T
+
+                               ------------------------------------------
+			        리턴값이 무조건 boolean으로 반화됨.
+
+				Predicate<T>: 파라미터 한개(T), 리터타입 boolean
+                                BiPredicate<T,U> : 파라미터 두개(T,U) , 리터타입 boolean
+                                DoublePredicate : 파라미터 한개(double), 리터타입 boolean
+                                IntPredicate     : 파라미터 한개(int), 리터타입 boolean
+				LongPredicate   : 파라미터 한개(long), 리터타입 boolean
 			       )
 
     - 위 4가지 기능을 가진 인터페이스 (Stream의 중간처리, 최종처리에 사용할 수 있는 )를 API로 제공됨.
