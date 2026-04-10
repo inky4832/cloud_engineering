@@ -3208,7 +3208,17 @@ public class Hello {
 			       DoubleToLongFunction:파라미터 한개(double), 리터타입 long
                                ToDoubleBiFunction<T,U>:파라미터 두개(T,U), 리터타입 double
                                ToDoubleFunction<T>: 파라미터 한개(T 타입), 리터타입 double
-
+				
+			       ---------------------------------------------------
+				Function을 상속받는 XXXOperator API 제공.
+			      
+			        BinaryOperator<T>: 파라미터 두개(T,T) , 리터타입 T
+                                DoubleBinaryOperator: 파라미터 두개(double,double) , 리터타입 double
+                                DoubleUnaryOperator : 파라미터 한개(double), 리터타입 double
+				IntBinaryOperator: 파라미터 두개(int, int), 리터타입 int
+                                IntUnaryOperator : 파라미터 한개(int), 리터타입 int
+				UnaryOperator<T>: 파라미터 한개(T), 리터타입 T
+			       )
 
     - 위 4가지 기능을 가진 인터페이스 (Stream의 중간처리, 최종처리에 사용할 수 있는 )를 API로 제공됨.
   
