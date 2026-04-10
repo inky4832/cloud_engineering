@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 public class ArrayListTest {
@@ -54,7 +55,31 @@ public class ArrayListTest {
 		//삭제
 		list.remove(0); //인덱스로 삭제
 		list.remove(new Integer(1000)); //값으로 삭제
-		System.out.println(list); // 
+		
+		//수정
+		list.set(0, 2000);
+		
+		System.out.println("크기: " + list.size());
+		System.out.println("포함여부: " + list.contains(300));
+		System.out.println("비어있냐: " + list.isEmpty());
+	
+		System.out.println(list); //
+		
+		
+		List <String> list2 = new ArrayList<String>(); // 다형성
+		list2.add("A");
+		list2.add("B");
+		list2.add("B");
+		list2.add("C");
+		list2.add("D");
+		list2.add("D");
+		list2.add("E");
+		System.out.println(list2); //
+		System.out.println("=============================");
+		//부분리스트
+		List <String> list3 = list2.subList(0, 3);
+		System.out.println("부분리스트:"+ list3);
+		
 		
 	}
 
