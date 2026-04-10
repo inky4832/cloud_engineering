@@ -42,7 +42,19 @@ public class ArrayListTest {
 			System.out.println(s);
 		}
 		
+		//메서드 
+		//현재: [100, 200, 300]
 		
+		//중간삽입
+		list.add(0, 900);
+		
+		//수정
+		list.set(1, 1000);
+		
+		//삭제
+		list.remove(0); //인덱스로 삭제
+		list.remove(new Integer(1000)); //값으로 삭제
+		System.out.println(list); // 
 		
 	}
 
