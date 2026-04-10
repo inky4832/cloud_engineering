@@ -3103,6 +3103,9 @@ public class Hello {
     <E> : Element 의미
     <T,R> : Return Type 의미
          ex. <String, Integer>
+    
+    <K,V> : Key Type 의미
+            Value Type 의미
 
    4)특징
      - <T>가 컴파일 시점(*)에 실제 지정된 타입으로 치환됨
@@ -3118,7 +3121,7 @@ public class Hello {
 	   -배열
 	      크기변경 불가
 	      같은 데이터만 저장가능
-	      지원되는 메서드 없음. ( Arrays 유틸리티 이용했음 )
+	      지원되는 음 없음. ( Arrays 유틸리티 이용했음 )
 
 	   -컬렉션 API
 	 //////////////////
@@ -3127,9 +3130,97 @@ public class Hello {
       -크기변경 가능 ( StringBuilder와 비슷)
       -다른 데이터 저장가능 ( 모든 데이터 저장 가능)
        제네릭스이용해서 특정 데이터만 한정 가능 (**************)
+      -자체적으로 지원되는 메서드가 많음
      
+  
+   3) 종류 ( java.util 패키지 )
+
+        
+	 Collection<E> (인터페이스 )                         Map<K,V>  (인터페이스 )
+	     |                                               |
+	     | extends                                       |
+	     |					          HashMap<K,V>
+  Set<E>(인터페이스 )    List<E>(인터페이스 )
+     |                     |
+     |                     |
+  HashSet<E>            ArrayList<E>
+
+    
+   4) 데이터 저장 방식(자료구조)에 따른 종류
+
+      가. Set계열
+	 - 저장되는 데이터 순서가 없음
+	 - 중복저장이 불가 ( 한번만 저장됨 )
+	 용도: 중복제거용도로 사용 가능
+
+      나. List계열
+         - 저장되는 데이터 순서가 있음
+	 - 중복저장이 가능
+
+      다. Map계열
+         - Set과 List는 데이터(value)만 저장함.
+           하지만 Map계열은 데이터(value)와 이름(key,name) 쌍으로 저장.
+	
+	 - key이용한 value 검색 성능이 매우 우수함.
+
+	 
+3. 메서드 파라미터 사용시 가변인자 ( Variable Arguments)
+
+   일반 메서드:   public void a(int a){}
+
+     a(10);
+     a(200);
+
+   가변인자 메서드: public void a2(int ... a){} <== 배열로 관리
+  
+     a2(1);
+     a2(1,2,3);
+
+     System.out.printf("%s %d", "홍길동", 20);
+     System.out.printf("%s ", "홍길동");
 
 
+4. 표준 API 함수적 인터페이스
 
-스트림
-MySQL
+   1) 개념
+     - 메서드의 동작 방식에 따른 4가지 종류가 있음.
+       가. 파라미터없고 리턴값 없는 경우
+       나. 파라미터있고 리턴값 없는 경우 ( Consumer:파라미터 한개(T 타입)
+                               BiConsumer:파라미터 두개(T,U)
+			       IntConsumer:파라미터 한개(int 타입)
+			       DoubleConsumer:파라미터 한개(double 타입)
+			       LongConsumer:파라미터 한개(long 타입)
+			       ObjDoubleConsumer:파라미터 두개(T,double)
+			       위에서 제공된 기능이외의 기능이 필요하면 직접 구현해야됨.
+			     
+
+       다. 파라미터없고 리턴값 있는 경우 ( Supplier: 리터타입 T
+                               BooleanSupplier: 리턴타입 boolean
+			       DoubleSupplier: 리턴타입 double
+			       LongSupplier: 리턴타입 long
+
+                               )
+
+       라. 파라미터있고 리턴값 있는 경우 ( Function<T,R> : 파라미터 한개(T 타입), 리터타입 R
+                               BiFunction<T,U,R>: 파라미터 두개(T,U) , 리터타입 R
+			       DoubleFunction<R>: 파라미터 한개(double), 리터타입 R
+			       DoubleToIntFunction:파라미터 한개(double), 리터타입 int
+			       DoubleToLongFunction:파라미터 한개(double), 리터타입 long
+                               ToDoubleBiFunction<T,U>:파라미터 두개(T,U), 리터타입 double
+                               ToDoubleFunction<T>: 파라미터 한개(T 타입), 리터타입 double
+
+
+    - 위 4가지 기능을 가진 인터페이스 (Stream의 중간처리, 최종처리에 사용할 수 있는 )를 API로 제공됨.
+  
+  2) java.util.function 패키지
+
+
+5. Stream API
+
+  - 컬렉션 API와 관련 있음.
+    현재 컬렉션 API(Set,List,Map)들은 저장,수정,삭제,조회,크기등 기본적인 기능들만 포함하는 메서드만 지원됨.
+
+  - 컬렉션 API에서 필요한 기능은 통계처리(합계,평균,최대,최소),필터링,정렬,중복제거 작업등이 필요함 ( DB는 예전부터 지원되는 기능들임 )
+    JDK 버전업되면서 이러한 기능들을 포함한 Stream API 제공됨.
+    
+
