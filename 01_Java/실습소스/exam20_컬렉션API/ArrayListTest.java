@@ -81,6 +81,12 @@ public class ArrayListTest {
 		System.out.println("부분리스트:"+ list3);
 		
 		
+		System.out.println("=============================");
+		// 생성방법2 - Arrays 클래스이용
+		List<String> list4 = Arrays.asList("A","B","B","C"); // fixed-size로 만듬,추가불가, 가변인자
+		System.out.println(list4); //
+		list4.add("E");
+		System.out.println("=============================");
 	}
 
 }
