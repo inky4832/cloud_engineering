@@ -67,5 +67,50 @@ public class StreamTest3_중간처리 {
 		    .distinct()
 		    .filter(s -> s.length() == 3)
 		    .forEach(System.out::println);
+		
+		
+		//중간처리3 - 가공 map(Function<T,R> )
+		List<Student> list2 = Arrays.asList(new Student("홍길동", 100),
+											new Student("이순신", 90),
+											new Student("유관순", 50),
+											new Student("강감찬", 70),
+											new Student("정조", 95),
+											new Student("선덕여왕", 45)
+				                            );
+				
+				                             
+		
 	}
 }
+
+class Student{
+	String name; //이름
+	int grade;   //점수
+	public Student() {}
+	public Student(String name, int grade) {
+		this.name = name;
+		this.grade = grade;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getGrade() {
+		return grade;
+	}
+	public void setGrade(int grade) {
+		this.grade = grade;
+	}
+	@Override
+	public String toString() {
+		return "Student [name=" + name + ", grade=" + grade + "]";
+	}
+}
+
+
+
+
+
+
