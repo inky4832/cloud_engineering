@@ -58,6 +58,17 @@ public class StreamTest3_중간처리2 {
 		.forEach(System.out::println);
 	     System.out.println("===============================");
 		
+	   //중간처리6- skip(n)
+	     list2.stream()
+		    .skip(2)
+			.forEach(System.out::println);
+		     System.out.println("===============================");
+	     
+	  //중간처리7- limit(n)    
+		     list2.stream()
+			    .limit(4)
+				.forEach(System.out::println);
+			     System.out.println("===============================");
 	}
 }
 class Student2{
