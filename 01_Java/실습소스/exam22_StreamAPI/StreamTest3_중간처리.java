@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
@@ -69,6 +70,7 @@ public class StreamTest3_중간처리 {
 		    .forEach(System.out::println);
 		
 		
+		System.out.println("============================");
 		//중간처리3 - 가공 map(Function<T,R> )
 		List<Student> list2 = Arrays.asList(new Student("홍길동", 100),
 											new Student("이순신", 90),
@@ -77,9 +79,29 @@ public class StreamTest3_중간처리 {
 											new Student("정조", 95),
 											new Student("선덕여왕", 45)
 				                            );
-				
-				                             
+		// 이름만 출력
+		Stream<Student> stream4 = list2.stream();
+		//익명함수
+		Function<Student, String> f = new Function<Student, String>() {
+			@Override
+			public String apply(Student stu) {
+				return stu.getName();
+			}
+		};
+		//람다표현식
+		Function<Student, String> f2 = stu->stu.getName();
+		//메서드참조
+		Function<Student, String> f3 = Student::getName;
+		Stream<String> stream5 = stream4.map(f3);
+		stream5.forEach(System.out::println);
+		System.out.println("============================");
 		
+		//최종코드
+		list2.stream()
+		     .map(Student::getName)
+		     .forEach(System.out::println);
+		
+		System.out.println("============================");
 	}
 }
 
