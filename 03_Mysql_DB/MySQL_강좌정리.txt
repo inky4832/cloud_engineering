@@ -72,3 +72,37 @@ MySQL 강좌정리
 	학생정보( 학생 DB )
 
    2) 데이터베이스 관리 시스템(DataBase Management System, DBMS )
+     
+     - 데이터베이스(DB)를 전문적이고 효율적으로 관리하기 위한 S/W.
+      ex. MySQL, Oracle, MS-SQL, DB2,...
+
+     -관리방법?
+      SQL(Structured Query Language)문 이용. (DBMS 언어)
+
+      SQL문 종류 (외우기)
+
+      가. DML (데이터 조작어,  Data Manipulation Language)
+         -INSERT문 ( 데이터 생성 )
+	 -DELETE문 ( 데이터 삭제 )
+	 -UPDATE문 ( 데이터 수정 )
+
+      나. DDL (데이터 정의어, Data Definition Language)
+        -CREATE문 ( 테이블생성)
+	-ALTER문  ( 테이블수정)
+	-DROP문   ( 테이블삭제)
+	-TRUNCATE문 (테이블절삭)
+
+      다. TCL ( 트랜잭션 관리 , Transaction Control Language )
+       -COMMIT ( 트랜잭션 확정)
+       -ROLLBACK (트랜잭션 취소)
+
+      라. DQL( Data Query Language)
+       -SELECT문 ( 데이터 조회)
+
+     ////////////////////
+     CRUD 작업?
+	 Create: 생성 ( insert 작업 의미 )
+	 Read:   조회 ( select 작업 의미 ) 
+	 Update: 수정 ( update 작업 의미 )
+	 Delete: 삭제 ( delete 작업 의미 )
+     //////////////////////
