@@ -1,0 +1,74 @@
+MySQL 강좌정리
+
+1. 환경설정
+
+   -MySQL8 설치
+    https://dev.mysql.com/downloads/installer/
+  
+   -설치 3가지 ( MySQL, Workbench, sample )
+   -관리자계정
+     root/1234
+
+   -wokkbench > preferences > SQL Editor > safe update 체크 해제
+
+
+ 2. MySQL 접속방법
+
+   1) 툴이용
+     - Workbench ( 자체적으로 설치)
+     - sqltron
+     - DBeaver
+       https://dbeaver.io/download/
+
+
+   2) 프로그램언어 ( 자바 )
+    
+     -JDBC(Java DataBase Connectivity)
+      ==> 자바와 DB 연동하는 기술
+      ==> DB 종류와 무관하게 연동가능 ( DB에 독립적 )
+      ==> SQLException 예외가 발생됨.
+         따라서 반드시 try~-catch 또는 throws 예외처리가 필요함.
+
+3. 실습에서 사용할 데이터베이스 생성 및 테이블 작성
+
+  - 데이터베이스: testdb
+  - 테이블:
+      1)수업에서 사용할 테이블  (scott_mysql.sql)
+
+	  emp 테이블 ( 사원테이블로서 사원정보가 저장되어 있음 )
+
+	   empno 컬럼: 사원번호, INT (정수)
+	   ename 컬럼: 사원명,  VARCHAR (문자열)
+	   job 컬럼:   직업    VARCHAR (문자열)
+	   mgr 컬럼:   관리자 사원번호  INT (정수)
+	   hiredate 컬럼: 입사일     DATE(날짜)
+	   sal 컬럼:   월급          INT (정수)
+	   comm 컬럼:  커미션 ( job이 SALESMAN 경우에만 값을 가짐 )  INT (정수)
+	   deptno 컬럼: 부서번호    INT (정수)
+
+	  dept 테이블 ( 부서 테이블로서 부서 정보가 저장되어 있음 )
+	   
+	   deptno 컬럼: 부서번호    INT (정수)
+	   dname 컬럼: 부서명      VARCHAR (문자열)
+	   loc 컬럼:   부서위치     VARCHAR (문자열)
+ 
+         salgrade 테이블 ( sal의 등급 정보가 저장되어 있음 )
+	   
+	   grade 컬럼:  sal 등급    INT (정수)
+	   losal 컬럼:  최저 sal    INT (정수)
+	   hisal 컬럼:  최고 sal    INT (정수)
+
+
+
+      2)워크샵에서 사용할 테이블  (MySQL용_SQL워크샵스크립트.txt)
+
+
+4. 데이터베이스 vs 데이터베이스 관리 시스템(DataBase Management System, DBMS )
+
+   1) 데이터베이스(Database: DB )
+    - 개인,회사, 관공서등에서 업무적으로 필요한 데이터 의미.
+     예> 사원정보( 사원 DB )
+        부서정보( 부서 DB )
+	학생정보( 학생 DB )
+
+   2) 데이터베이스 관리 시스템(DataBase Management System, DBMS )
