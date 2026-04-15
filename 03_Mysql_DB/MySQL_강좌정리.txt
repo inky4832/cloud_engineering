@@ -869,7 +869,12 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/numeric-functions.html
 	                     SALESMAN 1000  1000*1.2
 
 		
-		select empno, ename, job, sal , case ~ end as 실수령
+		select empno, ename, job, sal , case job when 'CLERK' THEN sal * 1.1
+						         when 'SALESMAN' THEN sal * 1.2
+							 when 'MANAGER' THEN sal * 1.3
+							 when 'ANALYST' THEN sal * 1.4
+							 else sal
+		                                end as 실수령
 		from emp;
 
 
@@ -880,3 +885,14 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/numeric-functions.html
 		   [ELSE result] 
 	       END
 	       
+	    ex. sal에 따른 직급출력
+	
+		 sal > 3000 <== 이사급
+                 sal > 2500 <== 과장급
+		 이외         <== 사원급
+
+	      empno, ename, job,    sal , 직급
+		--------------------- -------
+	                      CLERK   4000  이사급
+	                     SALESMAN 2800  과장급
+			              800   사원급 
