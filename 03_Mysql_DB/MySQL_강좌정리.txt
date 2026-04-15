@@ -920,3 +920,53 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/cast-functions.html
       select cast('2010-02-23' as Date );
 
 ======================================================================
+7. 그룹함수
+https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/aggregate-functions-and-modifiers.html
+
+  1)함수종류
+   
+    SUM([DISTINCT] expr)  : 총합
+    avg([DISTINCT] expr) : 평균
+    max([DISTINCT] expr) : 최대값
+    min([DISTINCT] expr) : 최소값
+    count([DISTINCT] expr):레코드 갯수
+    COUNT(*)
+
+  2) 그룹함수 적용되는 대상? 
+    - 그룹별로 적용됨
+
+  
+  3) 그룹별로 만드는 방법
+
+    가. 명시적
+	
+	select 절
+	1번 from 절
+	2번 [where 조건식]
+	3번 group by 컬럼
+	4번 having 조건식
+	[order by 절];
+
+	ex.
+	    select sum(sal)
+	    from emp
+	    group by job; // job별
+	   
+	    group by deptno; //부서별
+
+	
+	     select deptno, sum(sal)
+	    from emp
+	    group by deptno//부서별
+	    having sum(sal) > 9000;
+
+      특징:
+          - group by 표현식(컬럼명|별칭|위치)  # Oracle에서는 별칭|위치 안됨
+	  - select에 일반 컬럼을 사용할려면 반드시 group by로 설정한 컬럼만 사용이 가능하다. (*****)
+	  - where절에는 그룹함수 사용불가
+
+
+
+    나. 묵시적
+
+
