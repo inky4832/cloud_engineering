@@ -1321,7 +1321,12 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/aggregate-functions-and-modifi
       나. 복수행 연산자
 
          - 서브쿼리가 실행된 후 여러 행(복수행) 리턴하는 경우에 사용가능한 연산자임
-	 - IN, ANY, ALL EXISTS
+	 - IN, ANY ( 최소값보다 큰:  > ANY <=== > (select max())동일
+	             최대값보다 작은 : < ANY ) <=== < (select min())동일
+	       ALL ( 최소값보다 작은: < ALL   <=== < (select min())동일
+	             최대값보다 큰: > ALL )  <=== > (select max())동일
+	       
+	       EXISTS
 
 
 	 ex1. emp테이블에서 업무별로 최소급여를 받는 사원정보 출력(사원번호,이름,job,hiredate,sal)?
@@ -1356,6 +1361,25 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/aggregate-functions-and-modifi
 	                   where job ='MANAGER');
 
 
+	 # 최소값보다 작은
+
+	    select empno, ename,job,hiredate,sal
+	      from emp
+	      where sal < ALL (select sal
+	                       from emp
+	                       where job ='MANAGER');
+
+
+
+                 select empno, ename,job,hiredate,sal
+	      from emp
+	      where sal < ALL ( 2450
+	                         2850
+                                2975
+			        );
+
+
+
 	 ex3. emp테이블에서 job이 MANAGER 인 사원의 최소급여보다 많은 급여를 받는 사원 정보(사원번호,이름,job,hiredate,sal)?
 
                 select empno, ename,job,hiredate,sal
@@ -1363,6 +1387,25 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/aggregate-functions-and-modifi
 	      where sal > (select min(sal)
 	                  from emp
 	                   where job ='MANAGER');
+
+
+	  # 최소값보다 많은
+
+               select empno, ename,job,hiredate,sal
+	      from emp
+	      where sal > ANY (select sal
+	                  from emp
+	                   where job ='MANAGER');
+
+		
+	      select empno, ename,job,hiredate,sal
+	      from emp
+	      where sal > ANY (2850 
+	                       2975
+	                        3000
+				5000
+		                );
+
 
 	 ex4. emp테이블에서 job이 MANAGER 인 사원의 최대급여보다 적은 급여를 받는 사원 정보(사원번호,이름,job,hiredate,sal)?
 
@@ -1373,6 +1416,17 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/aggregate-functions-and-modifi
 	                   where job ='MANAGER');
 
 
+	    # 최대값보다 작은
+
+
+               select empno, ename,job,hiredate,sal
+	      from emp
+	      where sal < ANY (select sal
+	                  from emp
+	                   where job ='MANAGER');
+
+
+
 	 ex5. emp테이블에서 job이 MANAGER 인 사원의 최대급여보다 많은 급여를 받는 사원 정보(사원번호,이름,job,hiredate,sal)?
 
 	       select empno, ename,job,hiredate,sal
@@ -1380,3 +1434,21 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/aggregate-functions-and-modifi
 	      where sal > (select max(sal)
 	                  from emp
 	                   where job ='MANAGER');
+
+
+
+	  # 최대값보다 많은 
+
+	       select empno, ename,job,hiredate,sal
+	      from emp
+	      where sal > ALL (select sal
+	                  from emp
+	                   where job ='MANAGER');
+
+		
+		 select empno, ename,job,hiredate,sal
+	      from emp
+	      where sal > ALL ( 2450
+	                         2850
+                                2975
+			        );
