@@ -1163,7 +1163,148 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/aggregate-functions-and-modifi
   문법:
 
       select *
-      from t1 LEFT OUTER JOIN t2 ON|USING
+      from t1 LEFT OUTER JOIN t2 ON|USING 
+
+       ==> t1 레코드는 모두 출력
 
       select *
       from t1 RIGHT OUTER JOIN t2 ON|USING
+
+      ==> t2 레코드는 모두 출력
+
+      # oracle에서는 LEFT|RIGHT|FULL  OUTER JOIN 지원
+
+      
+      ex.
+          select *
+	  from emp  RIGHT OUTER JOIN   dept using(deptno);
+
+
+          select *
+	  from emp  RIGHT OUTER JOIN   dept on emp.deptno = dept.deptno;
+
+
+          select *
+	  from emp e RIGHT OUTER JOIN   dept d on e.deptno = d.deptno;
+
+  --  신입사원
+	 insert into emp (empno, ename,job,mgr,hiredate,sal,comm,deptno)
+	 values ( 9000, '홍길동', 'SALESMAN', 7499, NOW(), 700, 0, null );
+	 commit;
+
+	 select *
+	 from emp  LEFT OUTER JOIN   dept using(deptno);
+
+
+      * mysql에서 누락된 양쪽 테이블 모두 보기 ( union(합집합))
+        
+         select *
+	 from emp  LEFT OUTER JOIN   dept using(deptno)
+	 union
+         select *
+	  from emp  RIGHT OUTER JOIN   dept using(deptno;
+
+
+4. self 조인
+
+
+    개념: 하나의 테이블에서 자신이 자신이 테이블로 조인하는 방법
+
+    예> 사원명과 관리자명 출력
+
+      select e.ename as 사원명, m.ename as 관리자명
+      from emp e  join  emp m  on e.mgr = m.empno;
+
+///////////////////////////////////////////////
+
+5. 서브쿼리( subquery )
+
+  1) 개념
+     원하는 데이터를 한 번의 select만으로 안될때.
+     여러번의 select문을 사용해서 원하는 결과를 얻음.
+
+  ex. SMITH 사원보다 더 많은 sal를 받는 사원 출력?
+
+      작업1> SMITH 사원의 sal 검색 ? 800 가정
+
+           select sal
+	   from emp
+	   where ename ='SMITH';
+
+      작업2>  select empno,ename,sal
+           from emp
+	   where sal > 800;
+
+
+    최종적으로 작업1 과 작업2를 합치면 subquery 문법이 됨.
+
+         최종 subquery문:
+
+
+              -- 메인쿼리(main query)
+	      select empno,ename,sal
+              from emp
+	      where sal > (select sal
+	                   from emp
+	                   where ename ='SMITH');
+
+
+  2)특징
+     - 서브쿼리는 반드시 ()를 가짐 
+     - 서브쿼리가 먼저 실행되고 그 결과값을 이용해서 main query가 실행됨.
+     - 서브쿼리가 사용가능한 위치는 거의 모든곳에 사용이 가능하고 여러번 사용 가능
+       ex. where, having, from, insert, delete, update, create,...
+
+      
+    ex1.  emp테이블에서 사원번호가 7521 의 업무와 동일하고 급여가 7934보다 많은 사원의 정보(사원번호,이름,job,hiredate,sal)출력?
+   
+           -- 7521의job
+	   select job
+	   from emp
+	   where empno = 7521;
+
+	  -- 7934의sal
+	  select sal
+	   from emp
+	   where empno = 7934;
+
+
+	   select empno, ename,job,hiredate,sal
+	   from emp
+	   where job = (select job
+	                 from emp
+	                 where empno = 7521)
+
+	         and
+		 sal > (select sal
+	                 from emp
+	                where empno = 7934);
+    
+    
+    
+    ex2.  emp테이블에서 급여의 평균보다 적은 급여를 받는 사원 정보 출력(사원번호,이름,job,hiredate,sal)?
+
+	   -- 급여의평균
+	   select avg(sal)
+	   from emp;
+
+	   select empno, ename,job,hiredate,sal
+	   from emp
+	   where sal < (select avg(sal)
+	                from emp);
+
+
+    ex3.  emp테이블에서 20번 부서의 최소급여보다 많은 모든 부서를 출력? (부서명, 최소급여)
+
+           -- 20번 부서의 최소급여
+	   select min(sal)
+	   from emp
+	   where deptno=20;
+	
+	 
+	  select deptno, min(sal)
+	  from emp 
+	  group by deptno
+	  having min(sal) >  ( select min(sal)
+	                       from emp
+	                      where deptno=20);
