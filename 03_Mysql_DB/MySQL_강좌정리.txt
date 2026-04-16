@@ -1082,3 +1082,29 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/aggregate-functions-and-modifi
      동작:
          테이블명1 과 테이블명2에서 using에 설정된 공통컬럼으로 조인한다.
         
+
+   4) on 절 (범용적)
+
+    문법:
+
+        select *
+	from 테이블1 [inner] join 테이블2  ON 조건
+	where 조건;
+
+
+      ex. 
+           select *
+	   from emp join dept  on emp.deptno = dept.deptno;
+    
+
+          select ename, sal , dname, loc, e.deptno  -- 공통컬럼 지정시 반드시 별칭 지정해야 됨.
+          from emp e join dept  d on e.deptno = d.deptno;  -- equi조인
+
+
+    non-equi조인
+
+          emp 와 salgrade
+
+	  select *
+	  from emp e join  salgrade s  ON e.sal BETWEEN s.losal AND s.hisal;
+
