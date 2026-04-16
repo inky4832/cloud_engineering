@@ -570,10 +570,10 @@ MySQL 강좌정리
 
        LENGTH(str) : 지정된 str의 byte 갯수
                     영문자는 1byte
-		    한글은 3byte로 처리됨
+		    한글은 3byte로 처리됨 (*****************)
 
-       CHAR_LENGTH(str): 지정된 str의 갯수
-         
+       CHAR_LENGTH(str): 지정된 str의 갯수 (*****************)
+
     6) 치환
       
        REPLACE(str,from_str,to_str)
@@ -718,7 +718,7 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/numeric-functions.html
 	       current_timestamp(), current_timestamp
 
 
-       SYSDATE(): 기본포맷은 'YYYY-MM-DD hh:mm:ss'
+       SYSDATE(): 기본포맷은 'YYYY-MM-DD hh:mm:ss'   # oracle 에서는 sysdate
                시간을 구하는 시점이 함수호출시 시간을 구함.
 
    2) 현재날짜 
@@ -907,7 +907,7 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/numeric-functions.html
 6. 형변환 함수
 https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/cast-functions.html
 
-  CAST(expr AS type)
+  CAST(expr AS type) <== CONVERT()동일
 
   ex. 10-->'10'
       '10'->10
@@ -940,12 +940,12 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/aggregate-functions-and-modifi
 
     가. 명시적
 	
-	select 절
+	5번select 절
 	1번 from 절
 	2번 [where 조건식]
 	3번 group by 컬럼
 	4번 having 조건식
-	[order by 절];
+	6번[order by 절];
 
 	ex.
 	    select sum(sal)
@@ -978,3 +978,46 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/aggregate-functions-and-modifi
 
             select sum(sal), avg(sal), max(sal), min(sal), count(sal)
 	    from emp;
+==================================================================================
+3일차 2026-04-16
+
+1. 조인(join)
+
+  1) query ( select ) 작업 3가지
+
+     - projection: 컬럼 선택, select 절
+     - selection: 레코드 선택, where 절
+     - join : 2개 이상의 테이블에서 selection과 projection 처리
+
+
+  2) 용도
+     - 원하는 데이터가 여러 테이블에 분산되어 있는 경우에
+       테이블을 연결(join)애서 데이터를 조회하는 방법.
+
+  3) 종류1 (***************)
+
+     가. inner 조인 ( 일반적으로 의미하는 조인 )
+       - 테이블간의 연결고리(데이터가 일치)가 있는 데이터만 출력하는 방식.
+         즉 일치하지 않으면 누락됨.
+
+     나. outer 조인
+        - inner 조인 + 누락된 데이터까지 포함해서 출력하는 방식
+
+  4) 종류2
+
+     가. ANSI 조인
+        - DBMS 독립적
+
+     나. 비 ANSI 조인
+        - DBMS 의존적
+
+
+  5) 종류3
+
+    가. equi조인
+      - 값이 정확하게 일치하는 방식으로 조인
+      - 연산자로 사용하면 동등연산자 (=) 사용
+
+    나. non-equi조인
+      - 값이 정확하게 일치하지는 않는 방식으로 조인
+      - 연산자로 사용하면 between A and B 사용 ( 부등연산자)
