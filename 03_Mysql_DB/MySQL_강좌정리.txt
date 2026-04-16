@@ -1108,3 +1108,62 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/aggregate-functions-and-modifi
 	  select *
 	  from emp e join  salgrade s  ON e.sal BETWEEN s.losal AND s.hisal;
 
+  
+   --3개조인 
+
+     a. natural join
+
+         select *
+	 from t1 natural join t2
+
+	  select *
+	 from  t1 natural join t2
+	          natural join t3;
+
+    b. using
+      
+        select *
+	from t1  join t2 using(공통컬럼)
+
+	 select *
+	from t1  join t2 using(공통컬럼)
+	         join t3 using(공통컬럼)
+
+    c. on
+       select *
+       from t1 join t2 on 조건식
+
+       select *
+       from t1 join t2 on 조건식1 
+               join t3 on 조건식2;
+
+   ex. 사원명, 부서번호, 부서명, sal, sal등급 출력하시오
+
+
+       select *
+       from emp e join dept d using(deptno)
+
+       select *
+       from  emp e join dept d using(deptno)
+                   join salgrade s ON e.sal BETWEEN s.losal AND s.hisal;
+
+
+
+       select *
+       from  emp e join dept d     ON e.deptno = d.deptno
+                   join salgrade s ON e.sal BETWEEN s.losal AND s.hisal;
+
+
+
+3. Outer 조인
+
+   - 기본적으로 join은 inner 조인임( 일치하는 데이터만 출력됨)
+     그런데 일치하지 않는 데이터까지 포함해서 조인하는 방식임.
+
+  문법:
+
+      select *
+      from t1 LEFT OUTER JOIN t2 ON|USING
+
+      select *
+      from t1 RIGHT OUTER JOIN t2 ON|USING
