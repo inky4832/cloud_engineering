@@ -2004,14 +2004,36 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/create-table.html
    insert into slave1 (num, ename, no ) values ( 50, 'slave5', null );
    commit;
 
+   # master1의 레코드
+
+     delete from master1 where no = 1;
+
+==============================================================================================
+  
+   create table master2
+   ( no int PRIMARY KEY,
+     name varchar(10) NOT NULL);
+
+   insert into master2 ( no, name ) values (1, 'aa1' );
+   insert into master2 ( no, name ) values (2, 'aa2' );
+   insert into master2 ( no, name ) values (3, 'aa3' );
+   commit;
+
+
    create table slave2
    (  num int PRIMARY KEY,
       ename VARCHAR(10) NOT NULL,
-      no int 
+      no int,
+
+       CONSTRAINT FOREIGN KEY(no) REFERENCES master2(no) ON DELETE SET NULL
    
    );
-
-
+   
+   insert into slave2 (num, ename, no ) values ( 10, 'slave1', 1 );
+   insert into slave2 (num, ename, no ) values ( 20, 'slave2', 2 );
+   insert into slave2 (num, ename, no ) values ( 30, 'slave3', 3 );   
+   insert into slave2 (num, ename, no ) values ( 50, 'slave5', null );
+   commit;
      
 
 
