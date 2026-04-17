@@ -1841,7 +1841,13 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/create-table.html
 
 
 
+  다. 날짜형
+    
+       date: 날짜만 저장, insert할때 curdate()
 
+       time: 시간만 저장, insert할때 curtime()
+
+       datetime: 날짜+시간 저장 , insert할때 now()
 
 
 
