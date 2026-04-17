@@ -2082,3 +2082,23 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/create-table.html
       alter table 테이블명
       RENAME COLUMN 컬럼명 TO new컬럼명;  
 
+   ex.
+       create table if not exists my_dept
+       ( no int primary key,
+         name varchar(10)  
+       );
+
+       -- 컬럼 추가
+       alter table my_dept
+       add column address varchar(20);
+
+       -- 컬럼 변경 ( 크기 변경 )
+       alter table my_dept
+       modify address varchar(50);
+
+
+       alter table my_dept
+       modify address varchar(10);
+
+
+
