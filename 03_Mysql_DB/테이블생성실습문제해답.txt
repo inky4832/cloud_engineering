@@ -1,0 +1,40 @@
+drop table subject;
+ create table subject
+ ( subno int primary key,
+   subname varchar(20)  NOT NULL,
+   term varchar(1)  CHECK ( term in ( '1','2') ),
+   type varchar(4)  CHECK( type in ('필수','선택') ));
+   
+    create table subject
+ ( subno int,
+   subname varchar(20)  NOT NULL,
+   term varchar(1), 
+   type varchar(4),
+    CONSTRAINT  primary key(subno),
+    CONSTRAINT subject_term_ck CHECK ( term in ( '1','2') ),
+    CONSTRAINT subject_type_ck CHECK( type in ('필수','선택')) 
+   );
+
+  insert into subject ( subno , subname, term , type )
+  values ( 1, 'a','1','필수');
+    insert into subject ( subno , subname, term , type )
+  values ( 2, 'a','3','필수');
+   insert into subject ( subno , subname, term , type )
+  values ( 3, 'a','1','필');
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+   create table student
+  ( studno int  PRIMARY KEY,
+    stuname varchar(10) );
+    
+
+   create table sugang
+  ( studno int ,
+    subno int ,
+    regdate date,
+    result int, 
+     CONSTRAINT  PRIMARY KEY (studno, subno),
+     CONSTRAINT sugang_studno_fk FOREIGN KEY(studno) REFERENCES student(studno),
+     CONSTRAINT sugang_subno_fk FOREIGN KEY(subno) REFERENCES subject(subno)
+     );
