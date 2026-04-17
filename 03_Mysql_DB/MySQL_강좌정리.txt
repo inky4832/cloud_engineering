@@ -2036,4 +2036,31 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/create-table.html
    commit;
      
 
+8. 테이블 삭제 및 절삭
 
+    drop table if exists 테이블명, 테이블명2,..;
+
+      ex. drop table if exists board;
+          drop table if exists board2, board3;
+
+
+    trunate table 테이블명;  -- 테이블내의 모든 레코드를 삭제
+
+    * delete vs truncate
+
+      delete : DML
+	       rollback가능
+
+      truncate: DDL
+               rollback불가
+
+	ex. truncate table my_emp;
+
+
+
+9. 테이블 수정
+
+  - 컬럼추가
+  - 컬럼삭제
+  - 제약조건추가
+  - 컬럼이름변경
