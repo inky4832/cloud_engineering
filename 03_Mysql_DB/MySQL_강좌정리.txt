@@ -1710,8 +1710,15 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/aggregate-functions-and-modifi
       - 모든 레코드의 컬럼이 변경됨
 
        문법:
+                      <--------- 트랜잭션 시작
             update 테이블명
 	    set 컬럼명=새로운값, 컬럼명=새로운값, ,,,;  
+		     	
+                      <-- 트랜잭션 종료 ( commit/rollback )
+	 ex.
+	      update my_emp
+	      set ename='이순신', sal=100;
+
 
 
     나. 조건있는 update문 ( 일반적으로 사용됨 )
@@ -1721,7 +1728,48 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/aggregate-functions-and-modifi
             update 테이블명
 	    set 컬럼명=새로운값, 컬럼명=새로운값, ,, 
 	    where 조건식;
+   
+      
+       ex.
+	      update my_emp
+	      set ename='이순신', sal=100
+	      where empno=7369;
+
+-------------------------------------------------------------
+4. delete 문
+
+  1) 용도
+    - 레코드 삭제
 
 
+  2) 종류
 
+    가. 조건없은 delete문
+
+	-문법:
+	                    <--------- 트랜잭션 시작
+	     delete from 테이블명;
+
+	                    <-- 트랜잭션 종료 ( commit/rollback )
+	
+	- 모든 레코드가 삭제됨
+
+
+	 ex.
+	       delete from my_emp;
+		
+	       rollback;
+
+
+    나. 조건있은 delete문 ( 일반적으로 사용 )
+
+        - 문법:   delete from 테이블명
+	        where 조건식;
+   
+        - 조건에 일치하는 레코드만 삭제됨
+
+
+	ex. 
+	    delete from my_emp
+	     where empno=7369;
 
