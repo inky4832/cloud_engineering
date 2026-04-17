@@ -2061,6 +2061,24 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/create-table.html
 9. 테이블 수정
 
   - 컬럼추가
+
+      alter table 테이블명
+      add column 컬럼명 데이터타입;
+
   - 컬럼삭제
+      alter table 테이블명
+      drop 컬럼명;     
+      
   - 제약조건추가
+      
+      alter table 테이브명
+      add 제약조건;
+    
+      alter table 테이브명
+      modify 컬럼명 데이터타입 not null;
+
   - 컬럼이름변경
+
+      alter table 테이블명
+      RENAME COLUMN 컬럼명 TO new컬럼명;  
+
