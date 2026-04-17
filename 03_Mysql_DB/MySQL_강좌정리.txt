@@ -1936,7 +1936,7 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/create-table.html
          ex.
           create table IF NOT EXISTS board4
 		   (
-		       num int AUTO_INCREMENT,
+		       num int,
 		       title varchar(100),
 		       author varchar(10),
 		       content varchar(500),
@@ -1976,3 +1976,42 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/create-table.html
 
 		alter table board4
 		add CONSTRAINT CHECK (gender in ('M','F'));
+
+//////////////////////////////////////////////////////////////////////////
+7. foreign key 설정
+
+   create table master1
+   ( no int PRIMARY KEY,
+     name varchar(10) NOT NULL);
+
+   insert into master1 ( no, name ) values (1, 'aa1' );
+   insert into master1 ( no, name ) values (2, 'aa2' );
+   insert into master1 ( no, name ) values (3, 'aa3' );
+   commit;
+
+   create table slave1
+   (  num int PRIMARY KEY,
+      ename VARCHAR(10) NOT NULL,
+      no int,
+      
+      CONSTRAINT FOREIGN KEY(no) REFERENCES master1(no) ON DELETE CASCADE
+   
+   );
+   insert into slave1 (num, ename, no ) values ( 10, 'slave1', 1 );
+   insert into slave1 (num, ename, no ) values ( 20, 'slave2', 2 );
+   insert into slave1 (num, ename, no ) values ( 30, 'slave3', 3 );   
+   insert into slave1 (num, ename, no ) values ( 40, 'slave4', 4 ); // 에러발생
+   insert into slave1 (num, ename, no ) values ( 50, 'slave5', null );
+   commit;
+
+   create table slave2
+   (  num int PRIMARY KEY,
+      ename VARCHAR(10) NOT NULL,
+      no int 
+   
+   );
+
+
+     
+
+
