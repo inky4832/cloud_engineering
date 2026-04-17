@@ -1594,3 +1594,22 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/aggregate-functions-and-modifi
 	     delete 문
 	     ...
 	             <-- 트랜잭션 종료(commit,rollback)
+
+
+    4) DBMS마다 트랜잭션 처리방법이 다름.
+
+        가. MySQL
+	   - auto commit으로 처리됨.
+	     따라서 트랜잭션으로 묶을수 없음.
+	     비활성화 시키고 트랜잭션으로 처리가능.
+
+	     # autocommit 여부 확인
+	     show variables like 'autocommit%';
+
+	     # autocommit 비활성화
+	     set autocommit=false;
+
+	나. Oracle
+	   - 명시적으로 commit/rollback으로 트랜잭션을 종료해야 됨.
+
+-------------------------------------------------------------
