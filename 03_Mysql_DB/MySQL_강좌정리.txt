@@ -1965,8 +1965,11 @@ https://docs.oracle.com/cd/E17952_01/mysql-8.0-en/create-table.html
 	    add CONSTRAINT 제약조건(컬럼명);  // 테이블 레벨문법과 동일
 
 	   ex.
+	        #  moidfy + add 같이 사용해서 PRIMARY KEY와 AUTO_INCREMENT 한꺼번에 설정
 	        alter table board4
-		add CONSTRAINT PRIMARY KEY(num);
+		modify num INT AUTO_INCREMENT,
+		add CONSTRAINT PRIMARY KEY(num)
+		
 
 		alter table board4
 		add CONSTRAINT UNIQUE(author);
