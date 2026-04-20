@@ -63,3 +63,63 @@ JDBC ( Java DataBase Connectivity )
       프로젝트생성 > 생성한 프로젝트 오른쪽 클릭 > build path > Configure build path... >
       3번쨰 탭의 libraries > Classpath 선택 > Add Externals Jars... > mysql-connector-j-8.0.33.jar 선택
 
+
+5. JDBC 연동
+
+  1) mysql 접속 정보 4가지
+
+     String driver = "com.mysql.cj.jdbc.Driver"; // 핵심이 되는 클래스명
+     String url = "jdbc:mysql://localhost:3306/testdb";
+     String userid ="root";
+     String passwd = "1234";
+
+
+  2) 드라이버 로딩   
+    - "com.mysql.cj.jdbc.Driver" 를 메모리에 올리는 작업의미.
+      그런데 메모리에 올려야되는 클래스명이 문자열로 되어 있음.
+
+     try{
+       Class.forName(driver);  // Class.forName("com.mysql.cj.jdbc.Driver");
+     }catch(ClassNotFoundException e){}
+
+    - ClassNotFoundException 예외가 발생되고, try~catch 필수로 처리해야됨.
+
+  3) Connection 맺기
+	
+        - java와 mysql 연결하는것을 의미.
+
+	java.sql.Connection;
+        java.sql.DriverManager;
+
+	Connection con = DriverManager.getConnection(url, userid, passwd);
+
+
+        SQLException 예외가 발생되고, try~catch 필수로 처리해야됨.
+
+        java프로그램 -------------------------------------MySQL
+		   sql 전달 --------------------------->
+		    <---------------------------------
+	          ------------------------------------- 
+
+  4) sql문 작성
+
+     - 수업에서 배웠던 모든 sql문 사용 가능. (ex. 함수, 조인, 서브쿼리, DML, DDL ,.. )
+     - 문장끝의 ; 반드시 제외.
+
+       String sql = "select deptno, dname, loc from dept";
+
+       String sql = "insert into dept(deptno,dname,loc)values(50,'인사','서울')";
+
+  5) PreparedStatment 얻기 (sql문 전달 객체)
+
+        java.sql.PreparedStatment;
+  
+	PreparedStatment pstmt = con.prepareStatement(sql);
+
+	
+	SQLException 예외가 발생되고, try~catch 필수로 처리해야됨.
+
+
+
+
+
