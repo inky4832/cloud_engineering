@@ -56,3 +56,10 @@ JDBC ( Java DataBase Connectivity )
      https://dev.mysql.com/downloads/connector/j
 
      드라이버명: mysql-connector-j-8.0.33.jar
+   
+
+   2) eclipse에서 드라이버 설정 ( 외부 jar파일를 인식시키는 작업: build path한다고 부름. )
+
+      프로젝트생성 > 생성한 프로젝트 오른쪽 클릭 > build path > Configure build path... >
+      3번쨰 탭의 libraries > Classpath 선택 > Add Externals Jars... > mysql-connector-j-8.0.33.jar 선택
+
