@@ -1,5 +1,9 @@
 package exam2.select;
 
-public interface DeptService {
+import java.util.List;
 
+public interface DeptService {
+	public abstract void setDao(DeptDAO dao);
+	public abstract List<DeptDTO> list();
+	
 }
