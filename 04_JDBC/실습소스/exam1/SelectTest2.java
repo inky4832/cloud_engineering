@@ -45,9 +45,9 @@ public class SelectTest2 {
 			e.printStackTrace();
 		}finally {
 			try {
-				  rs.close();
-				  pstmt.close();
-			      con.close();
+				 if(rs!=null) rs.close();
+				 if(pstmt !=null) pstmt.close();
+				 if(con !=null) con.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
