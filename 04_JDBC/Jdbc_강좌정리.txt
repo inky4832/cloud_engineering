@@ -174,3 +174,21 @@ JDBC ( Java DataBase Connectivity )
      
       SQLException 예외가 발생되고, try~catch 필수로 처리해야됨.
  /////////////////////////////////////////////////////////////////////////////////
+6. 트랜잭션 처리
+   - JDBC의 DML은 auto commit임.
+
+
+    Connection con = DriverManager.getConnection(url, userid, passwd);
+
+   try{
+con.setAutoCommit(false);  // 기본값은 true
+
+
+    //insert문
+    //update문
+    
+    con.commit();
+  }catch(SQLException e){
+
+    con.rollback();
+  }
