@@ -42,7 +42,13 @@ public class DeptServiceImpl implements DeptService {
 			list = dao.list(con);
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		}finally {
+			try {
+				 if(con !=null) con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}// try~catch~finally
 		return list;  // DeptSelectMain에 리턴
 	}//end list()
 
