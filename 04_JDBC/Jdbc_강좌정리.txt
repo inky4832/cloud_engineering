@@ -14,7 +14,7 @@ JDBC ( Java DataBase Connectivity )
     어떤 DBMS건 동일한 메서드로 접근한다.
   - JDBC는 비런타임 계열의 예외(SQLException)가 발생됨. 따라서 try~catch 또는 throws로 반드시 예외처리해야 됨.
   - JDBC는 기본적으로 auto commit임. ( 필요시 비활성 가능 ) 
-
+  - 일반 standard alone 환경 및 웹 환경에서도  JDBC 사용가능.
 
 3. 일관된 방법 구현?
 
@@ -196,8 +196,20 @@ con.setAutoCommit(false);  // 기본값은 true
 ///////////////////////////////////////////
 7. 레이어(Layer) 나누기
 
+  * DB 연동
+  1)4가지정보
+  2)드라이버로딩: Class.forName()
+  3)Connection 맺기
+  4)sql작성
+  5)PreparedStatement 작성
+  6)sql전송
+  7)close작업
+                        
+			  1),2),3)
+			  7)의 con.close()
+
                           로직처리+트랜잭션처리
-			  (Connection얻고close함)
+			  (Connection얻고close함)  4),5),6), 7)pstmt.close(),rs.close()
 	 화면처리		                     (DB 연동 )
 	 presentation   |  Service      |   persistence   | 
 	 layer          |  layer        |   layer         |     MySQL
@@ -211,3 +223,14 @@ con.setAutoCommit(false);  // 기본값은 true
 					    DeptDTO.java (dept테이블의 레코드 저장용)
 					    
 	* 각 Layer별로 데이터 전달할 때 사용하는 패턴( DTO 패턴: Data Transfer Object )
+---------------------------------------------------------------------------------
+finalproject
+
+
+
+			   DeptServie
+ DeptMain.java <---------> DeptServiceImpl <--------->  DeptDAO <---------> MySQL
+						         list(){}
+							 delete(){}
+							 update(){}
+							 insert(){}
