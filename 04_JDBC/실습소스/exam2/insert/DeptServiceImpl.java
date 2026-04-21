@@ -29,12 +29,12 @@ public class DeptServiceImpl implements DeptService {
 		}
 	}//end 생성자
     @Override 
-	public void insert(DeptDTO dto) {
+	public int insert(DeptDTO dto) {
+    	int n = 0;
 		Connection con = null;
 	     try {
 			 con = DriverManager.getConnection(url, userid, passwd);
-			 int n = dao.insert(con, dto);
-			 
+			 n = dao.insert(con, dto);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -45,5 +45,6 @@ public class DeptServiceImpl implements DeptService {
 				e.printStackTrace();
 			}
 		}// try~catch~finally
+	     return n;
 	}//end insert
 }//end class

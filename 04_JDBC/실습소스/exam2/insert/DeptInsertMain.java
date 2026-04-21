@@ -1,15 +1,26 @@
 package exam2.insert;
 
+import java.util.Scanner;
+
 public class DeptInsertMain {
 
 	public static void main(String[] args) {
-		// 사용자가 deptno,dname,loc 입력함
-		int deptno = 52;
-		String dname = "개바";
-		String loc = "서울";
+	
+		DeptService service  = new DeptServiceImpl();
+		service.setDao(new DeptDAO());
 		
-		DeptDTO dto = new  DeptDTO(deptno, dname, loc);
-//		 if(n>=1) System.out.println("저장성공");
+		Scanner scan = new Scanner(System.in);
+		
+		System.out.println("부서번호를 입력하시오");
+		int deptno = scan.nextInt();
+		System.out.println("부서명 입력하시오");
+		String dname = scan.next();
+		System.out.println("부서위치 입력하시오");
+		String loc = scan.next();
+		
+		DeptDTO dto = new DeptDTO(deptno, dname, loc);
+		int n = service.insert(dto);
+		if(n>=1)System.out.println("저장성공");
+		
 	}
-
 }
