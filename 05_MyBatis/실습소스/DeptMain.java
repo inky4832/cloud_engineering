@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -28,6 +29,16 @@ public class DeptMain {
 		
 		DeptDTO dto3 = session.selectOne("findByDeptnoAndDnameMap", map);
 		System.out.println(dto3);
+		
+		//다중행
+		List<DeptDTO> list = session.selectList("findAll");
+		System.out.println(list);
+		
+		DeptDTO data2 = new DeptDTO();
+		data2.setDeptno(40);
+		data2.setDname("인사과");
+		List<DeptDTO> list2 = session.selectList("findByDnameOrDeptno",data2);
+		System.out.println(list2);
 
 		//자원반납
 		session.close();
