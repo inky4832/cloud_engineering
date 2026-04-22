@@ -1,0 +1,39 @@
+MyBatis_강좌정리
+
+///////////////////////
+라이브러리(library)?
+-*.jar서(ex. *.js)의미로서 외부에서 만들어진 클래스파일들의 묶음으로
+  다운로드 받아서 build path에서 사용.
+
+프레임워크(framework)?
+- *.jar + 프로그램 개발하기 위한 틀
+
+///////////////////////
+MyBatis 프레임워크(framework)
+
+1. 개요
+  - JDBC 사용을 편리하고 효율적으로 기능이 추가된 형태의 SQL Mapping Framework임.
+    ( 개발자가 메서드 호출하면, 이 메서드에 해당하는 sql문을 자동으로 실행해줌 )
+  - ibatis ( 초창기 버전명 )
+
+2. 환경설정
+
+  - mybatis jar 필요
+    http://mybatis.org 에서 다운로드 받음  (mybatis-3.5.17.jar)
+
+  - mysql 드라이버 필요
+
+  위 2개의 jar파일을 (mybatis-3.5.17.jar, mysql-connector-j-8.0.33.jar) eclipse에서 build path해야됨.
+
+
+3. MyBatis 사용방법
+
+
+   1) jdbc에서 사용했던 4가지정보를 외부파일에 저장함.
+
+     String driver = "com.mysql.cj.jdbc.Driver"; // 핵심이 되는 클래스명
+     String url = "jdbc:mysql://localhost:3306/testdb";
+     String userid ="root";
+     String passwd = "1234";
+
+    ==> 파일명.properties 
