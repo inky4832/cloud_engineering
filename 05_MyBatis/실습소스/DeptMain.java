@@ -9,10 +9,19 @@ public class DeptMain {
 
 		SqlSession session = 
 				MySqlSessionFactory.getSession();
-	
+	    //단일행
 		DeptDTO dto = session.selectOne("findByDeptno", 20);
-		
 		System.out.println(dto);
+		//----------------------------------
+		DeptDTO data = new DeptDTO();
+		data.setDeptno(10);
+		data.setDname("ACCOUNTING");
+		
+		DeptDTO dto2 = session.selectOne("findByDeptnoAndDname", data);
+		System.out.println(dto2);
+
+		//자원반납
+		session.close();
 	}
 
 }
