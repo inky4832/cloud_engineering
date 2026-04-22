@@ -28,6 +28,7 @@ MyBatis 프레임워크(framework)
 
 3. MyBatis 사용방법
 
+  
 
    1) jdbc에서 사용했던 4가지정보를 외부파일에 저장함.
 
@@ -36,4 +37,46 @@ MyBatis 프레임워크(framework)
      String userid ="root";
      String passwd = "1234";
 
-    ==> 파일명.properties 
+    ==> 파일명.properties  #  key=value
+    ==> 저장방법
+          src
+	    com
+	      config
+	           jdbc.properties
+
+		        # 주석문
+			# key=value
+			jdbc.driver=com.mysql.cj.jdbc.Driver
+			jdbc.url=jdbc:mysql://localhost:3306/testdb
+			jdbc.userid=root
+			jdbc.passwd=1234
+
+    ==> 현재 eclipse에서 사용중인 인코딩은 기본적으로 utf-8 임. ( 전세계의 모든 언어를 표현할 수 있음 )
+        생성된 jdbc.properties 파일도 utf-8로 인코딩을 변경하자.
+
+    2) DTO 클래스 작성
+    - MyBatis에서 필수
+    - 일반적으로 테이블당 한개씩 작성.
+       ex. dept테이블용 DeptDTO.java
+           emp테이블용  EmpDTO.java
+
+    - DTO클래스의 변수명은 테이블의 컬럼명과 일치시켜주는 것을 권장함.
+
+        ex. dept 테이블 -----------------> com.dto.DeptDTO.java
+	    컬럼
+	    deptno ---------------------> int deptno; getDeptno()
+	                                              setDeptno(값)
+
+	    dname  ---------------------> String dname;
+
+	    loc  -----------------------> String loc;
+
+		   명시적으로 매핑하는 추가작업이 필요.
+	    sal  -----------------------> int salary; getSalary()
+	                                              setSalary(값)
+		
+
+    - DTO클래스에서 기본생성자와 getter/setter 메서드는 필수임.
+
+    ==> DTO에 저장된 데이터는 자동으로 MyBatis에서 가져와서 SQL문에 사용됨.
+       반대로 SQL문 실행된 결과를 자동으로 DTO에 저장시킨다.
