@@ -208,6 +208,10 @@ MyBatis 프레임워크(framework)
 		                               #{변수} 대신에 진짜 데이터로 치환됨.
 					       JDBC의 ? 역할.
 	      </select>
+			 deptno   dname  loc                   DeptDTO
+			 ------------------		      int deptno;
+	                  10     RESEARCH  NEWYORK            String dname;
+			                                      String loc;
 
 	     <select id="findByDeptno" resultType="com.dto.DeptDTO"> 
 		   select deptno,dname,loc
@@ -223,3 +227,27 @@ MyBatis 프레임워크(framework)
 
 	      parameterType: sql문에서 #{변수}에 해당하는 데이터 타입을 지정.
 	                    전달된 값이 자동으로 #{변수}에 치화됨.
+
+
+         b. insert문
+	    <insert id="insert" parameterType="com.dto.DeptDTO">
+		insert into dept (deptno, dname, loc )
+		values ( #{deptno}, #{dname} , #{loc} )
+	    </insert>
+	     <insert id="insert">
+		insert into dept (deptno, dname, loc )
+		values ( 55, 'aaa','bbb' )
+	    </insert>
+
+	 c. update문
+	    <update id="update" parameterType="com.dto.DeptDTO">
+		 update dept
+		 set dname=#{dname}, loc=#{loc}
+		 where deptno=#{deptno}
+	    </update>
+
+	 d. delete문
+	    <delete id="delete" parameterType="int">
+		 delete from dept
+		 where deptno=#{deptno}
+	    </delete>
