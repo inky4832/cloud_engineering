@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.config.MySqlSessionFactory;
@@ -19,6 +21,13 @@ public class DeptMain {
 		
 		DeptDTO dto2 = session.selectOne("findByDeptnoAndDname", data);
 		System.out.println(dto2);
+		//-------------------------------------------------------------
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("x", 10);
+		map.put("y", "ACCOUNTING");
+		
+		DeptDTO dto3 = session.selectOne("findByDeptnoAndDnameMap", map);
+		System.out.println(dto3);
 
 		//자원반납
 		session.close();
