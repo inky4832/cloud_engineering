@@ -27,8 +27,10 @@ public class EmpMain {
 		int n2 = session.delete("com.config.EmpMapper.deleteMulti", list2);
 		System.out.println(n2+" 개가 삭제됨.");
 		session.commit();
-				
-		
+		//조회할 데이터 생성
+	    List<String> list3 = Arrays.asList( "TURNER", "SMITH","JONES");
+		List<EmpDTO> list4 = session.selectList("com.config.EmpMapper.selectMulti", list3 );
+		System.out.println(list4);
 		
 		session.close();
 	}

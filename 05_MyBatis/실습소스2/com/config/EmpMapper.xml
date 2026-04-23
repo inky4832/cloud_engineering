@@ -22,4 +22,17 @@
 			</foreach>
 		  </where>
      </delete>
+     
+     <!-- 멀티 select-->
+     <select id="selectMulti" parameterType="arraylist" resultType="EmpDTO">
+	       select empno,ename,sal
+	       from emp
+	       <where>
+		    <foreach item="ename"  separator="," collection="list" 
+		             open=" ename IN (" close=")">
+			 #{ename}
+		    </foreach>
+	       </where>
+	   </select>
+     
 </mapper>
