@@ -40,6 +40,26 @@ public class DeptMain {
 		List<DeptDTO> list2 = session.selectList("findByDnameOrDeptno",data2);
 		System.out.println(list2);
 
+		//insert문
+//		DeptDTO data3 = new DeptDTO(61, "개발", "서울");
+//		int n = session.insert("insert",data3);
+//		if(n>=1)System.out.println("저장 성공");
+//		session.commit();
+		
+		//update문
+		HashMap<String, Object> map2 = new HashMap<String, Object>();
+		map2.put("deptno", 61);
+		map2.put("dname", "IT개발");
+		map2.put("loc", "서울시");
+		int n2 = session.update("update", map2);
+		if(n2>=1)System.out.println("수정 성공");
+		session.commit();
+		
+		//delete 문
+		int n3 = session.delete("delete", 61);
+		if(n3>=1)System.out.println("삭제 성공");
+		session.commit();
+		
 		//자원반납
 		session.close();
 	}

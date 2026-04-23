@@ -38,4 +38,31 @@
 		    where deptno = #{deptno} or dname= #{dname}
 	</select>
 	
+	
+	<insert id="insert" parameterType="com.dto.DeptDTO">
+	   insert into dept (deptno, dname, loc)
+	   values ( #{deptno}, #{dname}, #{loc})
+	</insert>
+	
+	
+	<update id="update" 
+	  parameterType="hashmap">
+		update dept
+		set dname=#{dname}, loc=#{loc}
+		where deptno=#{deptno}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+	    delete from dept
+	    where deptno=#{deptno}
+	</delete>
+	
+	
 </mapper>
+
+
+
+
+
+
+
