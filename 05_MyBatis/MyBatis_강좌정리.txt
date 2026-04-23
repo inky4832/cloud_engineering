@@ -206,7 +206,8 @@ MyBatis 프레임워크(framework)
 		   from dept      
                    where deptno = #{변수} <== ; 반드시 제외
 		                               #{변수} 대신에 진짜 데이터로 치환됨.
-					       JDBC의 ? 역할.
+					       JDBC의 ? 역할.  
+					       ${변수} 사용가능하지만 절대사용불가
 	      </select>
 
 
@@ -257,6 +258,13 @@ MyBatis 프레임워크(framework)
 		insert into dept (deptno, dname, loc )
 		values ( #{deptno}, #{dname} , #{loc} )
 	    </insert>
+
+            자바코드에서 호출하는 방법:
+
+                  SqlSession session = MySqlSessionFactory.getSession();
+		  int n = session.insert(String id);	
+		  int n = session.insert(String id, Object );	
+
 	     <insert id="insert">
 		insert into dept (deptno, dname, loc )
 		values ( 55, 'aaa','bbb' )
@@ -269,11 +277,29 @@ MyBatis 프레임워크(framework)
 		 where deptno=#{deptno}
 	    </update>
 
+
+	   자바코드에서 호출하는 방법:
+
+                  SqlSession session = MySqlSessionFactory.getSession();
+		  int n = session.update(String id);	
+		  int n = session.update(String id, Object );	
+
+
+
 	 d. delete문
 	    <delete id="delete" parameterType="int">
 		 delete from dept
 		 where deptno=#{deptno}
 	    </delete>
+
+
+	    자바코드에서 호출하는 방법:
+
+                  SqlSession session = MySqlSessionFactory.getSession();
+                  int n = session.delete(String id);	
+		  int n = session.delete(String id, Object );	
+
+
 
    4) configuration.xml 파일 정보를 자바코드에서 사용할 수 있도록 설정.
 
@@ -313,4 +339,74 @@ JDBC                                                          MyBatis프레임워크
 
 특징: try~catch필수                                               특징: try~catch 필요없음.
     설정정보와 sql문이 자바코드내에 있음                                       설정정보와 sql문이 자바코드외부로 설정.
-								   코드가 간결함
+    DML 사용시 auto commit.					코드가 간결함
+								  DML 사용시 auto commit아님.
+								  따라서 명시적인 commit() 호출 필요.
+
+								 
+------------------------------
+2일차 2026-04-23
+
+1. com.dto.DeptDTO 별칭 설정하기
+
+   - configuration.xml 에서 별칭 등록
+
+          <typeAliases>
+	    <typeAlias alias="DeptDTO" type="com.dto.DeptDTO" />
+	  </typeAliases>
+
+
+2. Mapper 비교연산자 사용시 이슈
+
+     ex. <select id="" >
+              select *
+	      from dept
+	      where  deptno < 40
+         </select>
+
+     < :    &lt;
+     > :    &gt;
+     <= :   &le;
+     >= :   &ge;
+
+   ==> sql문 자체를 Character 자체로 처리할 수 있음. CDATA 섹션이라고 부름
+    
+        <![CDATA[
+
+	      select *
+	      from dept
+	      where  deptno < 40
+
+	]]>
+        
+3. 동적 SQL 문
+
+ 1) 멀티 INSERT 문
+
+     -sql문:
+             insert into emp ( empno, ename, sal )
+	     values (9001,'홍길동1',300),(9002,'홍길동2',300),(9003,'홍길동3',300),...;
+
+     -java코드:
+	       List<EmpDTO> list = Arrays.asList( new EmpDTO(9001,...),
+	                                          new EmpDTO(9002,...),
+						  new EmpDTO(9003,...)
+		                                  );
+          
+	       SqlSession session = MySqlSessionFactory.getSession();
+		int n = session.insert("com.config.EmpMapper.insertMulti", list );
+
+     - mybatis문:
+
+         <mapper namespace="com.config.EmpMapper">
+       
+            <insert id="insertMulti" parameterType="arraylist">
+		
+		insert into emp ( empno, ename, sal )
+		values
+		 <foreach item="dto" separator="," collection="list">
+                   ( #{dto.empno}, #{dto.ename}, #{dto.sal} )  ==> ( 9001, '홍길동', 300 ), (9002,'홍길동2',300),(9003,'홍길동3',300)
+		 </foreach>
+	    </insert>
+
+	    
