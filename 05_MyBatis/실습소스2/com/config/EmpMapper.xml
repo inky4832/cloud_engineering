@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.config.EmpMapper">
+  
+  	<!-- 멀티 insert-->
+    <insert id="insertMulti" parameterType="arraylist">
+        insert into emp ( empno, ename, sal )
+        values
+        <foreach item="dto" separator=","  collection="list">
+           ( #{dto.empno}, #{dto.ename}, #{dto.sal} )
+        </foreach>
+    </insert>
+</mapper>
