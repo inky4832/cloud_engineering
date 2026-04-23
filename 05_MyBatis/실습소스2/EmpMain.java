@@ -40,7 +40,15 @@ public class EmpMain {
 		 System.out.println(list5);
 		 System.out.println(list5.size());
 		
-		
+		//조건 여러개 경우
+		   EmpDTO dto2 = new EmpDTO();
+//			 dto2.setJob("SALESMAN");
+			 dto2.setSal(800);
+			
+	 List<EmpDTO> list6 = session.selectList("com.config.EmpMapper.selectif2", dto2 );
+	 System.out.println(list6);
+	 System.out.println(list6.size());
+		 
 		session.close();
 	}
 
