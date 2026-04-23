@@ -35,4 +35,15 @@
 	       </where>
 	   </select>
      
+     
+      <!-- 조건 하나인 경우-->
+      <select id="selectif"  parameterType="EmpDTO"  resultType="EmpDTO">
+			select empno, ename, sal,job
+			from emp
+			<where>
+			    <if test="job != null">
+				job = #{job}
+			    </if>
+			</where>
+		 </select>
 </mapper>

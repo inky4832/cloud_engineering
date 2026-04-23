@@ -32,6 +32,15 @@ public class EmpMain {
 		List<EmpDTO> list4 = session.selectList("com.config.EmpMapper.selectMulti", list3 );
 		System.out.println(list4);
 		
+		//조건 하나인 경우
+		 EmpDTO dto = new EmpDTO();
+//		 dto.setJob("SALESMAN");
+		
+		 List<EmpDTO> list5 = session.selectList("com.config.EmpMapper.selectif", dto );
+		 System.out.println(list5);
+		 System.out.println(list5.size());
+		
+		
 		session.close();
 	}
 
