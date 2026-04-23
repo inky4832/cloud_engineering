@@ -395,6 +395,7 @@ JDBC                                                          MyBatis프레임워크
           
 	       SqlSession session = MySqlSessionFactory.getSession();
 		int n = session.insert("com.config.EmpMapper.insertMulti", list );
+		session.commit();
 
      - mybatis문:
 
@@ -409,4 +410,95 @@ JDBC                                                          MyBatis프레임워크
 		 </foreach>
 	    </insert>
 
-	    
+	      
+ 2) 멀티 DELETE 문
+
+     -sql문:
+                delete from emp
+		where empno IN ( 9001, 9002, 9003, ...);
+
+
+      -java코드:
+	         
+	        List<Integer> list = Arrays.asList( 9001, 9002, 9003, ...);
+		int n = session.delete("com.config.EmpMapper.deleteMulti", list );
+		session.commit();
+
+
+      - mybatis문:
+
+		<delete id="deleteMulti" parameterType="arraylist">
+		     delete from emp
+                     where empno IN (
+		        <foreach item="num"  separator="," collection="list">
+			    #{num}	
+			</foreach>
+			)
+		</delete>
+
+		<delete id="deleteMulti" parameterType="arraylist">
+
+		     delete from emp
+                     where empno IN 
+		        <foreach item="num"  separator="," collection="list" open="(" close=")">
+			    #{num}	
+			</foreach>
+			
+         	</delete>
+
+		<delete id="deleteMulti" parameterType="arraylist">
+
+		     delete from emp
+                     where  
+		        <foreach item="num"  separator="," collection="list" 
+			         open="empno IN (" close=")">
+			    #{num}	
+			</foreach>
+			==> delete from emp
+			     where empno IN ( 9001,9002, 9003 )
+         	</delete>
+
+			open="문장" <=== <foreach>가 실행되기 전에 단 한번 삽입되는 문장
+			close="문장" <=== <foreach>가 실행된 후에 단 한번 삽입되는 문장
+
+
+		# 다음 코드로 정리함
+                <delete id="deleteMulti" parameterType="arraylist">
+		     delete from emp
+                     <where>  
+		        <foreach item="num"  separator="," collection="list" 
+			         open="empno IN (" close=")">
+			    #{num}	
+			</foreach>
+		     </where>
+         	</delete>
+
+
+		
+ 3) 멀티 SELECT 문
+
+     -sql문:	
+               select empno,ename,sal
+	       from emp
+	       where ename IN ( 'TURNER', 'SMITH','JONES');
+
+
+      -java코드:
+
+                List<String> list = Arrays.asList( 'TURNER', 'SMITH','JONES');
+		
+		List<EmpDTO> list2 = session.selectList("com.config.EmpMapper.selectMulti", list );
+
+      - mybatis문:
+
+           <select id="selectMulti" parameterType="arraylist">
+
+	       select empno,ename,sal
+	       from emp
+	       <where>
+		    <foreach item="ename"  separator="," collection="list" 
+		             open=" ename IN (" close=")">
+			 #{ename}
+		    </foreach>
+	       </where>
+	   </select>
