@@ -78,4 +78,23 @@
 		    </set>
 		    where empno=#{empno}
 		</update>		 
+		<!-- choose 실습-->
+<select id="selectChoose" parameterType="EmpDTO" resultType="EmpDTO">
+		   select empno, ename, sal,job
+			from emp
+			<where>
+			   <choose>
+				<when test="job == 'SALESMAN'">
+				     sal &gt; 1500
+				</when>
+				<when test="job == 'CLERK' ">
+                     sal &gt; 2500
+				</when>
+				<otherwise>
+                     sal &gt; 3000
+				</otherwise>
+			   </choose>
+			</where>
+		</select>		
+		
 </mapper>
