@@ -16,8 +16,11 @@ public class EmpMain {
 		for(Emp e: list) {
 			System.out.println(e);
 		}
-		
-		
+		System.out.println("--------------------------------------");
+		List<Emp> list2 = session.selectList("com.config.EmpMapper.findByResultMap");
+		for(Emp e: list2) {
+			System.out.println(e);
+		}
 		
 	    session.close();	
 	}

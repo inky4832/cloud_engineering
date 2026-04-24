@@ -3,9 +3,37 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.config.EmpMapper">
+
+   <resultMap id="userResultMap" type="EmpDTO">
+     <id property="empno" column="empno"/>
+     <result property="username" column="ename"/>
+     <result property="job" column="job"/>
+     <result property="mgr" column="mgr"/>
+     <result property="hiredate" column="hiredate"/>
+     <result property="salary" column="sal"/>
+     <result property="commission" column="comm"/>
+     <result property="deptno" column="deptno"/>   
+   </resultMap>
+  
+  
+   <select id="findByResultMap" resultMap="userResultMap">
+  		 select empno,
+  		        ename ,
+  		        job,
+  		        mgr,
+  		        hiredate,
+  		        sal, 
+  		        comm ,
+  		        deptno
+  		 from emp
+  	     order by empno desc
+  	</select>
+  
+  
+  
+  
   
   	<select id="findAll" resultType="EmpDTO">
-  		
   		 select empno,
   		        ename as username,
   		        job,
