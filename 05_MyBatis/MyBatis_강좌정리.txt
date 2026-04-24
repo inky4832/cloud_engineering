@@ -880,3 +880,60 @@ JDBC                                                          MyBatis프레임워크
                  from emp join dept on emp.deptno = dept.deptno
 		 order by empno desc
            </select> 
+
+
+ -------------------------------------------------
+ 3. layer 나누기
+
+         SqlSession session = MySqlSessionFactory.getSession();
+		
+		List<DeptDTO> list = session.selectList("p2.EmpMapper.empdeptjoin2");
+
+		for(DeptDTO dept: list) {
+			System.out.println(dept);
+		}
+          session.close();
+	}
+
+			   com.service패키지                 com.dao
+                            EmpService
+   EmpMain.java             EmpServiceImpl                 EmpDAO  
+    main()
+
+			    -SqlSession 얻고                  - Service에서 전달된 SqlSession이용해서
+			     close()작업                         DB연동( selectLilst, insert ... )
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+추가 설명 2가지
+
+1.  Mappers 
+   - 인터페이스 이용
+
+2.  자바에서는 권장 표기법: 카멜표기법
+       ex.   int empNo;
+
+
+    DB에서는 표기법:  언더바 표기법
+      ex.    emp_no
+
+     
+  자동으로 언더바표기법의 컬럼을 카멜표기법의 자바변수에 자동으로 맵핑하도록 지원됨.
+  
+   <settings mapUnderscoreToCamelCase="true" />
+/////////////////////////////////////////////////////////////////////
+
+ web 어플리케이션
+ 1. html
+    css
+    javascript -------------> Vue.js, Reactjs
+
+ 2. 서블릿/jsp
+ 3. SpringBOOT
+
+
+
+
+
+
+
+
