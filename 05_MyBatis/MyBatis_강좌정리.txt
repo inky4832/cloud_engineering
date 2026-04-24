@@ -816,7 +816,7 @@ JDBC                                                          MyBatis프레임워크
 	     <result property="hiredate" column="hiredate"/>
 	     <result property="salary" column="sal"/>
 	     <result property="commission" column="comm"/>
-	     <!-- Dept레코드 설정 -->
+	     <!-- Dept레코드 설정  1:1 관계에서 association 사용  -->
 		<association property="dto" javaType="DeptDTO">   
 			<id property="deptno" column="xxx"/>
 			 <result property="dname" column="yyy"/>
@@ -839,4 +839,44 @@ JDBC                                                          MyBatis프레임워크
                  from emp join dept on emp.deptno = dept.deptno
 		 order by empno desc
            </select> 
+
+
+
        b. 1:N 관계 ( dept입장에서는 emp 관계가 1:N )
+
+
+       * 자바코드 표현
+
+	 EmpDTO                      DeptDTO
+
+	 int empno;		      int deptno;
+	 String ename;                String dname;
+	 ...                          String loc;
+         int deptno;			
+				      List<EmpDTO> empList;
+
+
+
+   * Mybatis 설정
+      
+	    <resultMap id="empdeptjoinMap2" type="DeptDTO">
+		<id property="deptno"  column="deptno" />
+                <result property="dname"  column="dname" />
+		<result property="loc"  column="loc" />
+		<!-- List<EmpDTO> empList; 설정 --> 
+		<collection property="empList"  ofType="EmpDTO">
+                      <id property="empno" column="empno"/>
+		     <result property="username" column="ename"/>
+		     <result property="job" column="job"/>
+		     <result property="mgr" column="mgr"/>
+		     <result property="hiredate" column="hiredate"/>
+		     <result property="salary" column="sal"/>
+		     <result property="commission" column="comm"/>
+		</collection>
+            </resultMap>
+
+             <select id="empdeptjoin2" resultMap="empdeptjoinMap2">
+		 select *
+                 from emp join dept on emp.deptno = dept.deptno
+		 order by empno desc
+           </select> 
