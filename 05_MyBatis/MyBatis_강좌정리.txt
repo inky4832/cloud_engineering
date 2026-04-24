@@ -703,3 +703,53 @@ JDBC                                                          MyBatis프레임워크
 
 
               int t = session.selectOne("id")
+
+--------------------------------------------------------------------
+3일차 2026-04-24
+
+1. 페이징 처리 (Paging)
+
+   - 반드시 정렬 필요
+
+
+   //////////////////////////////////////////
+    offset: 시작위치
+    limit: 읽어올 갯수
+     List<E> list  = session.selectList(String Object, new RowBounds(int offset, int limit);
+   ///////////////////////////////////////////////////////////////
+
+  ex. 게시판 (10개 레코드 )
+
+     총레코드 갯수: 10개,          int totalRecord; <===DB에서 조회
+     페이지당 보여줄 갯수: 3개       int perPage=3;
+     전체 페이지갯수 :   10/3 = 4  int totalPage = Math.ceil(10/3.0)
+     현재 페이지번호:              int curPage=1;  <== 초기값 1
+     
+      #구현
+      int curPage=1;  // 현재페이지번호
+      int perPage=3;  // 페이지당 보여줄 갯수
+      int offset = (curPage-1)*perPage  //정렬된 레코드에서 레코드를 가져오기 위한 시작위치
+      List<EmpDTO> list  = session.selectList("", new RowBounds(int offset, perPage));
+
+
+
+	레코드		 
+	레코드		 
+	레코드
+
+        -------
+	1 2 3 4
+
+
+     글번호
+     ------------------
+     10 - 0
+     9  - 1
+     8  - 2
+     7  - 3
+     6  - 4
+     5  - 5
+     4  - 6
+     3  -7
+     2  - 8
+     1  -9
