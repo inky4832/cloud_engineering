@@ -1,5 +1,6 @@
 package com.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -53,6 +54,20 @@ implements DeptService{
 		int n=0;
 		try {
 			n = dao.delete(session, deptno);
+			session.commit();
+		}finally {
+			session.close();
+		}
+		return n;
+	}
+
+	@Override
+	public int update(HashMap<String, Object> map) {
+		SqlSession session = 
+				MySqlSessionFactory.getSession();
+		int n=0;
+		try {
+			n = dao.update(session, map);
 			session.commit();
 		}finally {
 			session.close();

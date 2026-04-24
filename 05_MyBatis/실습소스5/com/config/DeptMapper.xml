@@ -20,63 +20,14 @@
 	    where deptno=#{deptno}
 	</delete>
  
- 
- 
- 
- 
- 
-  <!-- DeptMapper.xml-->
-   <select id="findByDeptno" 
-   resultType="DeptDTO" parameterType="int" > 
-		   select deptno,dname,loc
-		   from dept      
-           where deptno = #{deptno}
-	</select>
-    
-    <select id="findByDeptnoAndDname" 
-   resultType="DeptDTO" parameterType="DeptDTO" > 
-		   select deptno,dname,loc
-		   from dept      
-           where deptno = #{deptno} and dname= #{dname}
-	</select>
-	
-	<select id="findByDeptnoAndDnameMap" 
-   resultType="DeptDTO" parameterType="hashmap" > 
-		   select deptno,dname,loc
-		   from dept      
-           where deptno = #{x} and dname= #{y}
-	</select>
-	
-	
-	<select id="findByDnameOrDeptno" 
-   resultType="DeptDTO" parameterType="DeptDTO"> 
-		   select deptno,dname,loc
-		   from dept   
-		    where deptno = #{deptno} or dname= #{dname}
-	</select>
-	
-	
-	
-	
-	
-	<update id="update" 
+   <update id="update" 
 	  parameterType="hashmap">
 		update dept
 		set dname=#{dname}, loc=#{loc}
 		where deptno=#{deptno}
 	</update>
-	
-	
-	
-	
-	<select id="findByDeptnoLessThan" 
-   resultType="DeptDTO" parameterType="int" > 
-     <![CDATA[ 
-		   select deptno,dname,loc
-		   from dept      
-           where deptno < #{deptno}
-	   ]]>
-	</select>
+ 
+ 
 </mapper>
 
 

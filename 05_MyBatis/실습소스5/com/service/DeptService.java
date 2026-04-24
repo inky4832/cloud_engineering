@@ -1,5 +1,6 @@
 package com.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -13,4 +14,5 @@ public interface DeptService {
 	
 	public abstract int insert(DeptDTO dto);
 	public abstract int delete(int deptno);
+	public abstract int update(HashMap<String, Object> map);
 }

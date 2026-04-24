@@ -1,5 +1,6 @@
 package com.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -22,6 +23,11 @@ public class DeptDAO {
 	//삭제
 	public int delete(SqlSession session, int deptno) {
 		int n = session.delete("com.config.DeptMapper.delete", deptno);
+		return n;
+	}
+	//수정
+	public int update(SqlSession session, HashMap<String, Object> map) {
+		int n = session.update("com.config.DeptMapper.update", map);
 		return n;
 	}
 }
