@@ -753,3 +753,34 @@ JDBC                                                          MyBatis프레임워크
      3  -7
      2  - 8
      1  -9
+
+
+ -------------------------------------------------
+ 2. resultMap
+
+   1) 용도 2가지
+
+
+    가. 테이블의 컬럼명과 DTO의 변수명이 다른 경우
+
+
+          <resultMap id="userResultMap" type="EmpDTO">
+	     <id property="EmpDTO변수명" column="컬럼헤더값"/>
+	     <result property="EmpDTO변수명" column="컬럼헤더값"/>
+          </resultMap>
+	  
+          <select id="findByResultMap" resultMap="userResultMap">
+  		 select empno,
+  		        ename ,
+  		        job,
+  		        mgr,
+  		        hiredate,
+  		        sal+100 as sal, 
+  		        comm ,
+  		        deptno
+  		 from emp
+  	     order by empno desc
+  	</select>
+
+    나. 조인할 때
+
