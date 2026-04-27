@@ -411,20 +411,105 @@ HTML5 강좌정리
  
    8) table
 
-    1)기본구성
+    가.기본구성
      
        <table>: 루트태그
         <tr>: 행 생성
 	<td> 또는 <th>: 열 생성
 
-    2) 그룹핑 가능
+    나. 그룹핑 가능
       - 목적: 나중에 JS 또는 css 적용
        <thead>
        <tbody>
        <tfoot>
 
-   3) 셀병합
+    다. 셀병합
     
      colspan="갯수" <== 컬럼병합
      rowspan="갯수" <== 행병합
+
+   9) 리스트
+
+     가. 순서없는 리스트 (unordered list)
+
+        <ul>
+	  <li></li>
+	</ul>
+ 
+  
+    나. 순서있는 리스트 (ordered list)
+
+        <ol>
+	  <li></li>
+	</ol>
+ 
+    ==> 블럭레벨
+    ==> 일반적으로 메뉴만들때 많이 사용됨. ( css로 인라인레벨로 변경함 )
+
+
+  10. div와 span
+
+    - 그룹핑 방법
+
+    가. div
+	- 태그들을 그룹핑 목적 (전통적으로 사용했던 방식 )
+	- 블럭레벨
+
+    나. span
+
+       - 값을 그룹핑 목적
+       - 인라인 레벨
+       - 
+       ex. <p>안녕하세요. 홍길동님</p>
+
+           <p>안녕하세요. <span>홍길동</span>님</p>
+
+  11. 시맨틱 태그
+
+    - 태그 이름자체에 의미를 포함하는 태그
+
+     ex. <footer>, <nav>, <header>, <aside>, <section>, <article>,..
+
+      <div>태그 대신에 그룹핑할 때 사용하자.
+
+  12. 사용자 입력 태그
+
+   1) <inpu type="text|password|...."> 
+      <select>
+      <textarea>
+
+
+   2) 서버에 입력한 데이터를 전달하기 위해서는 반드시 <form>태그로 감싸야 된다.
+
+      <form action="타겟">
+           <inpu type="text|password|...." name="key"  value="값">
+	   <inpu type="text|password|....">
+	   ...	
+           <input type="submit" value="전송">
+      </form>
+      
+  3) 서버에 입력한 데이터가 서버에 전달되는 포맷
+
+      key=value&key=value 형식
+
+      key: tag의 name속성값
+      value: 사용자가 입력한 값
+
+  4) 서버에 요청하는 방식
+
+     가. get 방식 ( 기본 )
+        <form action="타겟" method="get">
+	<form action="타겟" >
+
+	- 사용자 입력데이터가 브라우저 url에 보여서 전달됨.
+	ex.  http://localhost:5500/target.html?key=value&key=value
+
+     나. post 방식
+        <form action="타겟" method="get">
+
+	- 사용자 입력데이터를 숨겨서 전달됨.
+	ex.  http://localhost:5500/target.html
+
+	      key=value&key=value
+
 
