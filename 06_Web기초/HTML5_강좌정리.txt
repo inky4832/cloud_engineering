@@ -186,3 +186,44 @@ HTML5 강좌정리
          문법:  data-속성명="값"
 
 	 ex. <p id="" data-xxx="" >
+
+
+   3) html 버전
+     
+      - 표준안인 html5 사용.
+      - 버전설정 방법
+       
+          <!DOCTYPE html> <== 웹브라우저에서 이 정보를 이용해서 처리함.
+	                      따라서 실행중인 웹브라우저에서는 html5 문법이 지원이 되어야 됨.
+			      최신 브라우저는 모든 지원되지만
+			      오래된 웹브라우저에서는 지원이 안될 수도 있음.
+
+
+    4) html5 기본 구조
+
+        <!DOCTYPE html>
+	<html>
+	  <head>
+	    <title></title>
+	    ..
+	  </head>
+	  <body>
+	    ....
+	  </body>
+	</html>
+
+
+	ex.
+
+	        <!DOCTYPE html>
+		<html lang="en">
+		<head>
+		    <title>안녕하세요</title>
+		</head>
+		<body>
+		     <h1>Hello</h1>
+		     <p>단락1</p>
+		     <p>단락2</p>
+		     <a href="google.com">구글</a>
+		</body>
+		</html>
