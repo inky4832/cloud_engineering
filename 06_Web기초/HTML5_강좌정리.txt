@@ -216,14 +216,37 @@ HTML5 강좌정리
 	ex.
 
 	        <!DOCTYPE html>
-		<html lang="en">
-		<head>
+		<html>
+		  <head>
 		    <title>안녕하세요</title>
-		</head>
-		<body>
+		  </head>
+		  <body>
 		     <h1>Hello</h1>
 		     <p>단락1</p>
 		     <p>단락2</p>
 		     <a href="google.com">구글</a>
-		</body>
+		  </body>
 		</html>
+
+    ==> 웹브라우저가 html를 다음과 같이 계층적인 구조로 만듬.
+        DOM ( Document Object Model)트리라고 부름.
+
+			
+			 html
+			  |
+		 head                body
+
+		  |                     |
+
+		title          h1       p          p       a-href="google.com"
+ 
+		  |             |      |           |       |
+		"안녕하세요"    "hello"  "단락1"      "단락2"   "구글"
+
+
+      용어정리
+       -태그(tag): 엘리먼트(Element), 노드(node)
+       -속성: 어트리뷰트(attribute), 노드(node)
+       -값:  텍스트(text) , 노드(node)
+
+       나중에 CSS,jS에서 DOM트리를 접근해서 스타일 및 DOM처리(수정,추가,삭제 등) 함.
