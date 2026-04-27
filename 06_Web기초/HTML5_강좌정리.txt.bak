@@ -1,0 +1,408 @@
+HTML5 강좌정리
+
+1. web 아키텍처 ( web architecutre )
+
+      server: 클라이언트의 요구사항을 서비스해주는 역할
+              ex. 웹서버, DB서버, FTP서버, DNS서버,...
+      client: 서버에게 필요한 작업을 요청하는 역할
+
+
+     가. html인 정적 컴포넌트
+
+       client(클라이어언트)-웹브라우저                     server(웹 서버)- Apache,Ngnix, IIS,...
+                                   요청(request):
+			    1)www.google.com/index.html
+			       ---------------------->          2) index.html(*.css,*.js,image) 찾음
+			                                        3) 없으면 404 오류 발생
+								       (File Not Found )
+								4) 있으면 index.html 응답
+			    <-------------------------
+			      5) 응답(response): 
+			         index.html(*.css,*.js,image) 다운로드
+				 (없는경우 FileNotFound.html)
+
+
+     6) index.html(*.css,*.js,image) 저장(캐시 저장소에 저장됨)
+     7) index.html 실행후
+       화면에 랜더링함.
+                          9)www.google.com/index.html 처럼
+			  이전 요청과 동일하면 캐시 사용함.
+			  -----------------------------------> 
+
+        html: 정적컴포넌트(static component)
+	      항상 동일한 화면이 랜더링됨.
+	      ex. 현재시간 09:35
+
+    나. jsp (html+자바코드) 인 동적 컴포넌트 ( 자바기술 )
+
+           
+	    client(클라이어언트)-웹브라우저                     server(컨테이너) - Tomcat(8080), resin,...
+				    1)요청
+				    example.com/hello.jsp        2) hello.jsp 찾음
+			           ------------------------>     3) 없으면 404 발생 (File Not Found)
+				                                 4) 있으면 3단계가 실행됨
+
+								    1단계: 변환단계
+								     hello.jsp-->hello_jsp.java
+
+								    2단계: 컴파일단계
+								    hello_jsp.java--> hello_jsp.class
+
+								    3단계: 실행(*)
+                                                                hello_jsp.class--> 결과값으로 html을 만듬.
+                                   <---------------------------
+				   5)응답:  html로 응답
+
+         6)랜더링
+	    현재시간이 달라짐
+
+    다. Servlet(*.java)인 동적 컴포넌트 ( 자바기술 )
+
+      
+           client(클라이어언트)-웹브라우저                     server(컨테이너) - Tomcat, resin,...
+                                 1)요청
+				  example.com/서블릿                  2)서블릿 찾기
+		                  --------------------------->      3) 없으면 404 (File Not Found)
+				                                    4) 있으면
+
+								       컴파일하고 실행(*)
+								       실행후 결과값으로 html을 만듬
+
+				<------------------------------
+				  5)응답: html형식으로 응답
+
+	  6)html 랜더링
+	     현재시간이 달라짐
+-----------------------------------------------------------------------------------------
+2. 요청 URL 
+
+  표현:   http://서버ip:포트번호/자원
+
+      ex.  http://localhost:8080/index.html
+           http://localhost:8080/hello.jsp
+	   http://localhost:8080/서블릿
+
+
+    ip: 실제 서버의 주소
+    port: 서버안에 여러 네트워크 장치들중에서
+          식별용
+
+      * 주요 장치 port
+        mysql: 3306
+	oracle: 1521
+	tomcat: 8080
+	web(http): 80(기본) <== 요청~응답시 전달및응답 데이터가 노출됨
+	보안web(https): 443 <== 요청~응답시 전달및응답 데이터가 암호화됨.
+	ssh: 22            <== 리눅스 원격 접속 ( 로컬에 linux, AWS )
+	
+----------------------------------------------------
+3. 환경설정
+
+ 1) node.js 설치
+  
+     http://nodejs.org
+
+ 2) VSC 설치 + 플러그인(확장팩) 설치
+     
+      https://code.visualstudio.com/
+
+
+
+4. 웹(web) 표준
+
+   1)개념
+   과거에는 웹 브라우저가 모두 다르기 때문에 서로 다른 html/css/js 사용했음.
+   효율적으로 사용하기 위해서 웹표준을 만듬.
+
+
+
+   2)웹표준 
+    - 1991년에 world wide web 용어가 처음 나옴
+    - 1993년 웹표준 단체 창성 ( w3c )
+
+        http://www.w3c.org
+	https://www.w3.org/standards/
+
+     - html 표준: html5
+       css 표준:  css3
+       js 표준:   ECMAScript5
+
+        ==> w3c가 제안하는 표준기술은 spec임. ( 자바의 인터페이스 개념 )
+	    실제 동작하는 구현은 웹브라우저 벤더가 만듬. (크롬,엣지, brave 등 )
+
+	    따라서 사용중인 브라우저가 표준기술을 실제로 지원하는지 여부를 반드시 확인해야 됨. (***********)
+
+   3) 모질라(mozilla)사이트
+      - https://developer.mozilla.org
+      - w3c에거 제안한 표준기술을 가장 빠르게 준수해서 가이드로 제공함.
+
+ //////////////////////////////////////////////////////////////////////
+
+ 5. html/css/js
+
+    1)html
+       - 데이터 구조(뼈대) 담당
+
+    2)css
+        - 스타일(디자인) 담당
+ 
+    3)js
+        - 동적처리 담당
+
+//////////////////////////////////////////////
+6.  html 
+
+  1) 개념
+    
+     -HyperText Markup Language
+      
+      HyperText: 링크로 되어있고 선택시 새로운 화면으로 연결.
+      Markup Language: 태그로 구성되어 있고 특정 의미가 포함됨
+
+  2) 특징
+    
+     - 태그로 구성. ex. <태그>
+     - 태그는 시작태그와 종료태그로 구성 ex. <시작태그>몸체(내용)</종료태그>
+     - 태그는 중첩이 가능.
+        ex.  <tag>
+                <tag></tag>
+	     </tag>
+
+     - 종료태그가 없는 태그로 존재함.  ex. <br>, <img> , <input>, <hr>
+     - 몸체가 없는 태그가 존재함 ( 빈(empty)태그라로 부름)
+        ex. <tag></tag> =====> <tag />
+
+     - tag는 소문자 권장 
+     - 시작태그는 속성을 가질 수 있음
+        ex.  <tag 속성명="속성값"  속성명="속성값" > 
+
+       모든 태그에서 사용 가능한 global 속성(ex. id,class,name,style  )도 있고
+       특정 태그에서만 사용 가능한 local속성(ex. href,value )도 있음.
+
+     - 태그명과 속성명이 정해져 있음. 
+       
+     - 속성명을 임의로 지정 가능 (*********************)
+
+         문법:  data-속성명="값"
+
+	 ex. <p id="" data-xxx="" >
+
+
+   3) html 버전
+     
+      - 표준안인 html5 사용.
+      - 버전설정 방법
+       
+          <!DOCTYPE html> <== 웹브라우저에서 이 정보를 이용해서 처리함.
+	                      따라서 실행중인 웹브라우저에서는 html5 문법이 지원이 되어야 됨.
+			      최신 브라우저는 모든 지원되지만
+			      오래된 웹브라우저에서는 지원이 안될 수도 있음.
+
+
+    4) html5 기본 구조
+
+        <!DOCTYPE html>
+	<html>
+	  <head>
+	    <title></title>
+	    ..
+	  </head>
+	  <body>
+	    ....
+	  </body>
+	</html>
+
+
+	ex.
+
+	        <!DOCTYPE html>
+		<html>
+		  <head>
+		    <title>안녕하세요</title>
+		  </head>
+		  <body>
+		     <h1>Hello</h1>
+		     <p>단락1</p>
+		     <p>단락2</p>
+		     <a href="google.com">구글</a>
+		  </body>
+		</html>
+
+    ==> 웹브라우저가 html를 다음과 같이 계층적인 구조로 만듬.
+        DOM ( Document Object Model)트리라고 부름.
+
+			
+			 html
+			  |
+		 head                body
+
+		  |                     |
+
+		title          h1       p          p       a-href="google.com"
+ 
+		  |             |      |           |       |
+		"안녕하세요"    "hello"  "단락1"      "단락2"   "구글"
+
+
+      용어정리
+       -태그(tag): 엘리먼트(Element), 노드(node)
+       -속성: 어트리뷰트(attribute), 노드(node)
+       -값:  텍스트(text) , 노드(node)
+
+       나중에 CSS,jS에서 DOM트리를 접근해서 스타일 및 DOM처리(수정,추가,삭제 등) 함.
+
+ 7. html 태그 주석
+  
+   <!-- 태그 -->
+ /////////////////////////////////////////////////////////////////////////////
+
+ 8. head태그의 자식태그
+
+    1) <title>
+       - html문서의 타이틀 용도
+       - 웹브라우저 탭에 보임
+       - 즐겨찾기 할 때 저장되는 값
+
+    2) <style>
+         - css 설정
+    3) <link>
+         - css 설정
+
+         //////////////////////////////////////////////
+            css 설정 방법 3가지
+	    가. inline 스타일
+	        - 태그의 속성으로 스타일지정
+		  ex. <p style="color:red">hello</p>
+
+	    나. internal 스타일
+		- 같은 html내에서 스타일 지정
+
+		  <head>
+                     <style>
+			 p{
+			  color:red;
+			 }
+		     </style>
+		  </head>
+		 
+		  <p>hello</p>
+		
+	    다. external 스타일
+	       - html 밖 외부파일로 스타일 지정
+
+	          # index.html
+		     <head>
+		       <link href="sytle.css"  rel="stylesheet" >
+                     </head>
+		     <p>hello</p>
+		 
+
+		  # style.css
+                     p{
+			  color:red;
+			}
+
+         ////////////////////////////////////////////////
+
+    4) <script>
+      
+         -js 설정
+
+	 ////////////////////////////////////////////////
+	    js 설정
+	    
+	    가. 내부(internal)
+
+		  <script>
+		      js코드
+		  </script>
+
+	    나. 외부(external)
+
+		  # index.html
+
+		   <script src="test.js"></script>
+
+		  #  test.js
+		      js코드
+	        
+	 ////////////////////////////////////////////////
+
+9. body 태그의 자식태그
+
+  1) 주요개념
+    - html의 모든 태그는 box로 되어 있음 (**************)
+
+  2) box 배치 방법 (************************* 외우기 )
+
+    가. 인라인 레벨( 가로배치 )
+       - ex. <span>, <a>
+       - 너비(width)가 자신이 가진 컨텐츠 크기만큼만 확보됨
+       - 명시적으로 너비(width)와 높이(height)를 변경할 수 없다.
+          width="100px" height="200px"  <== 적용안됨.
+       
+    나. 블럭 레벨 (세로 배치)
+       -ex. <p>,<div>, <table>,<ul>,<ol>,<tr>, <br>,<hr>
+       - 너비(width)가 웹 브라우저의 전체 너비를 차지하기 때문에
+         이어서 출력되는 태그는 새로운 줄에 랜더링되어 세로배치가 됨.
+
+       - 명시적으로 너비(width)와 높이(height)를 변경할 수 있다.
+          width="100px" height="200px"  <== 적용됨.
+
+////////////////////////////////////////////////////////
+  
+  3) header 태그
+
+     - <h1> ~  <h6>
+     - 번호가 작을수록 크게 보임
+       <h1>: 32px
+       <H4>: 16px 
+
+     - 기본폰트 크기는 16px (*******, 1rem)
+
+  4) p 태그
+   
+    - 문서의 문단(paragraph) 지정 목적
+
+  5) hr 태그
+    - 선(line)생성
+     - 종료태그가 없음
+     ex. <br>
+
+  6) br 태그
+   
+    - 자바의 \n 동일
+    - 종료태그가 없음
+     ex. <br>
+
+   7) span태그
+     - 값을 그룹핑 목적
+     - 
+       ex. <p>안녕하세요. 홍길동님</p>
+
+           <p>안녕하세요. <span>홍길동</span>님</p>
+
+
+   7) a 태그 ( anchor )
+    
+       - 페이지간의 연결(링크)시 사용됨
+       - 인라인 레벨(가로배치)
+       - 기본적으로 3가지 색상이 제공됨 
+         ( 방문전: 파랑색, 방문후: 보라색 , 활성화(누르고있을때):빨강색 )
+       
+       -문법:
+             <a href="타겟">링크</a> <== 현재창에 새로운 페이지가 출력
+	     <a href="타겟" target="_blank">링크</a> <== 새로운 창에 새로운 페이지가 출력
+
+       -종류
+
+         가. 외부링크
+	    
+	     <a href="외부파일|url">링크</a>
+
+	 나. 내부링크
+
+	     <a href="#아이디값">링크</a>
+
+
+	     <a id="값">..</a>
