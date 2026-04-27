@@ -250,3 +250,58 @@ HTML5 강좌정리
        -값:  텍스트(text) , 노드(node)
 
        나중에 CSS,jS에서 DOM트리를 접근해서 스타일 및 DOM처리(수정,추가,삭제 등) 함.
+
+ 7. html 태그 주석
+  
+   <!-- 태그 -->
+ /////////////////////////////////////////////////////////////////////////////
+
+ 8. head태그의 자식태그
+
+    1) <title>
+       - html문서의 타이틀 용도
+       - 웹브라우저 탭에 보임
+       - 즐겨찾기 할 때 저장되는 값
+
+    2) <style>
+         - css 설정
+    3) <link>
+         - css 설정
+
+         //////////////////////////////////////////////
+            css 설정 방법 3가지
+	    가. inline 스타일
+	        - 태그의 속성으로 스타일지정
+		  ex. <p style="color:red">hello</p>
+
+	    나. internal 스타일
+		- 같은 html내에서 스타일 지정
+
+		  <head>
+                     <style>
+			 p{
+			  color:red;
+			 }
+		     </style>
+		  </head>
+		 
+		  <p>hello</p>
+		
+	    다. external 스타일
+	       - html 밖 외부파일로 스타일 지정
+
+	          # index.html
+		     <head>
+		       <link href="sytle.css"  rel="stylesheet" >
+                     </head>
+		     <p>hello</p>
+		 
+
+		  # style.css
+                     p{
+			  color:red;
+			}
+
+         ////////////////////////////////////////////////
+
+    4) <script>
