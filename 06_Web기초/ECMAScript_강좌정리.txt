@@ -173,3 +173,15 @@ ECMAScrpt6 강좌정리
 		person.username="홍길동";  // set
 
 		var xxx = person.username;  //get
+
+
+       # 중요 
+        "{key:value}" ----------> {key:value}
+        "[10,20]"  --------------> [10,20]
+
+          JSON.parse( json(배열)문자열 )
+
+	{key:value} ----------> "{key:value}"
+	 [10,20]  --------------> "[10,20]"
+
+	  JSON.stringify( json(배열) )
