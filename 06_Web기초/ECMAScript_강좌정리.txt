@@ -297,6 +297,7 @@ ECMAScrpt6 강좌정리
 			  실행하고자하는 함수를 직접호출하지 않고 단지 호출하고자하는 함수의
 			  이름만 알려주면 시스템이 적절한 시점에 전달된 함수를 호출하는 동작의 함수.
 	
+자신 외의 함수를 return 에 넣는거랑 그냥 블럭안에 넣는거랑 무슨차이가 있나요?? 
 
 	  var yyy2 = function(){};	
 
@@ -304,6 +305,7 @@ ECMAScrpt6 강좌정리
 
 		//return function(){};
 		return yyy2;
+		
 	  }
 
 	  var f = xxx2();
@@ -317,13 +319,39 @@ ECMAScrpt6 강좌정리
       가. 파라미터없고 리턴없는 함수
           var f = function(){console.log("fun");};
 
+	  #arrow 함수
+          var f = ()=> {console.log("fun");};
+          var f = ()=> console.log("fun");
+
       나. 파라미터있고 리턴없는 함수
           var f = function(n){console.log("fun");};
           var f = function(n,n2){console.log("fun");};
+	  
+		 
+	
+            #arrow 함수 
+            var f = (n)=>{console.log("fun");};
+            var f = (n)=>console.log("fun");
+            var f = n=>console.log("fun");
+
+	    var f2 = (n,n2)=>console.log("fun");
+
+	   f(10);
+	   f2(10,20);
 
       다. 파라미터없고 리턴있는 함수
           var f = function(){ return 100;};
+ 
+         #arrow 함수 
+	 var f = ()=> { return 100;};
+         var f = ()=> 100;
 
 
       라. 파라미터있고 리턴있는 함수
           var f = function(n,n2){return n+n2};
+
+	  #arrow 함수 
+	 var f = (n,n2)=> { return n+n2;};
+         var f = (n,n2)=> n+n2;
+
+
