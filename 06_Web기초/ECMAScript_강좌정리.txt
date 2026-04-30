@@ -291,4 +291,22 @@ ECMAScrpt6 강좌정리
 
 
 
-	    xxx(yyy);
+	    xxx(yyy);  // 직접호출한 것은 xxx호출했고 실제 실행은 yyy함수가 반응함.
+	                  방아쇠를 당겼는데  실제 총알이 나감.
+			  콜백함수(callback function)?
+			  실행하고자하는 함수를 직접호출하지 않고 단지 호출하고자하는 함수의
+			  이름만 알려주면 시스템이 적절한 시점에 전달된 함수를 호출하는 동작의 함수.
+	
+
+	  var yyy2 = function(){};	
+
+	  function xxx2(){
+
+		//return function(){};
+		return yyy2;
+	  }
+
+	  var f = xxx2();
+
+	  yyy2();
+	  f();
