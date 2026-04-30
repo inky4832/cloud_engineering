@@ -112,7 +112,23 @@ ECMAScrpt6 강좌정리
 	   setName:function(n){ this.name=n;}
 	  };
 	 
-	 #접근방법은 .(dot)
+	 #접근방법은 .(dot) 또는 연관배열 ( ["key"] )
 	 person.name;
+	 person["name"]; <== 변수로 치환 가능 (**********)
+
+	 var xxx = "name";
+	 person[xxx];
+
 	 person.getName();
 	 person.setName("이순신");
+
+
+	 # value값은 변수로 사용가능
+
+		 var name = "홍길동";
+		 var age = 20;
+		 phone = ["010","011"];
+                 var person = { name,  // name: name, 키와값이 동일하면 key만 지정 가능.
+			   age,   //age: age,
+			   phone  // phone: phone
+			   }'
