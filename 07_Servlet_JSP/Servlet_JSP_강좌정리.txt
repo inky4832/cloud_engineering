@@ -138,7 +138,19 @@ Servlet/JSP 강좌정리 2026-05-04
 4.  웹 컴포넌트 작성
 
   1) 서블릿
-  2) jsp
+  2) jsp ( html 동일 )
+
+       3단계작업
+       가. 변환단계
+
+           hello.jsp ----------> hello_jsp.java
+
+       나. 컴파일 단계
+           hello_jsp.java --> hello_jsp.class
+
+       다. 실행단계
+           hello_jsp.class ---> html 코드로 결과가 나옴.
+
   3) html ( 사용안함, 대신 jsp 사용 )
 
         프로젝트명
@@ -150,6 +162,7 @@ Servlet/JSP 강좌정리 2026-05-04
 	          WEB-INF
 		       - <== WEB-INF는 외부에서 접근이 불가(보안) 
 		  main.html
+		  hello.jsp <== jsp는 html과 동일
 		  test.css
 		  test.js
 		  디렉터리
@@ -157,5 +170,47 @@ Servlet/JSP 강좌정리 2026-05-04
 		     test.css
 		     test.js
 
+5. 서블릿(Servlet)
 
-	   
+  1)특징
+    - *.java
+    - 저장위치는 src/main/java에 저장
+    - 반드시 패키지 필수 (****)
+    - main 메서드가 없음. 시작점이 없다.
+     ( 이유는 사용자가 맨 처음 요청하는 서블릿이 시작점이 됨 )
+
+   - 직접 new하지 않음.
+     Tomcat 서버가 필요한 시점에 생성부터 소멸까지 관리해줌.
+     즉 Tomcat 서버가 필요한 이유가 Servlet/JSP 같은 동적컴포넌트를 관리함.
+
+    - 실행결과는 html로 나옴.
+
+ 2) 구현 방법 (외우기)
+
+     가. 패키지로 구성
+        ex. com.servlet
+
+     나.  extends HttpServlet   (  jakarta.servlet.http 패키지 )
+
+
+	  ///////////////////////////////////////////	
+	   서블릿의 계층구조 ( 외우기)
+
+   Servlet (인터페이스), ServletConfig(인터페이스)
+	         |
+		 |
+	       GenericServlet ( 추상클래스)
+	          |
+		  |
+	       HttpServlet  ( 추상 클래스 )
+	          |
+		  |
+                사용자서블
+
+	Servlet 인터페이스: init(), service(), destroy()
+        ServletConfig 인터페이스: getInitParameter(), getServletName()
+
+	GenericServlet 추상클래스:  init(), service(), destroy(), getInitParameter()
+        HttpServlet  추상클래스:  doGet(), doPost()
+
+          ////////////////////////////////////////////
