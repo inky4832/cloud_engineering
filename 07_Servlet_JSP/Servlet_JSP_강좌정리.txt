@@ -1,0 +1,18 @@
+Servlet/JSP 강좌정리 2026-05-04
+
+1. 자바 개발 플랫폼 3가지
+
+  1) Java SE ( Java Standard Edition )
+    - 자바 spec
+    - JDK 설치 ( JVM, 개발툴(javac, java), API(.jar))
+    - 시작점(starting poing)인 main 메서드를 가짐.
+
+  2) Java EE ( Java Enterprise Edition )
+    
+    - 웹 어플리케이션 개발 플랫폼.
+    - Servlet/JSP spec ( 인터페이스 )
+	      
+    - 실제 구현체를 제공하는 벤더는 Apache임.
+      ( Tomcat 서버와 Servlet/JSP의 jar 제공)
+
+  3) Java ME ( Java Micro Edition )
