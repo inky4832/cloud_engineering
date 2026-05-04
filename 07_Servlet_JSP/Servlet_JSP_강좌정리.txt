@@ -216,5 +216,46 @@ Servlet/JSP 강좌정리 2026-05-04
 
     ==> 결국 사용자서블릿에서 위의 메서드를 그냥 사용할 수 있음. 또는 재정의 가능. (******************)
         반드시 재정의해야 되는 메서드는 doGet(기본) 또는 doPost 임 (************************)
-           ( html에서 method="get(기본)|post"
+           ( html에서 method="get(기본)|post" 와 연동되는 메서드임 )
           ////////////////////////////////////////////
+
+
+   다. 서블릿맵핑
+
+       예>
+           src
+	     main
+	        java
+		  com
+		    servlet
+		       HelloServlet
+
+
+        요청:  http://localhost:8080/컨텍스트명/servlet/풀패키지명의서블릿명
+
+	      http://localhost:8080/hello/servlet/com.servlet.HelloServet <== 현재 사용 안됨
+
+
+	      사용안한 이유 2가지
+	      - 보안취약
+	      - URL 길다.
+
+
+	     해결: 서블릿 맵핑(servlet mapping)
+
+	     http://localhost:8080/hello/servlet/com.servlet.HelloServet
+
+	     http://localhost:8080/hello/서블릿맵핑
+
+     
+      * 서블릿 맵핑 방법 2가지
+
+        가. 어노테이션 이용
+	    - @WebServlet("서블릿맵핑")
+
+
+	나. web.xml 
+
+	    
+
+	
