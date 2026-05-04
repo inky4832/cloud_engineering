@@ -54,9 +54,9 @@ Servlet/JSP 강좌정리 2026-05-04
 
  
       * 필요시 환경변수 설정필요
-
+       https://tomcat.apache.org/tomcat-10.1-doc/introduction.html
        CATALINA_HOME=C:\cloud_engineering\servlet_jsp\apache-tomcat-10.1.54
-
+  
 
 
 
@@ -70,3 +70,42 @@ Servlet/JSP 강좌정리 2026-05-04
 
   5) eclipse 와 tomcat 연동
 
+
+     * 서블릿/JSP 웹어플리케이션 배포 방법
+
+        가. eclipse에서 웹어플리케이션 생성
+	나. 웹어플리케이션을 압축 ( test.war )
+	다. tomcat 서버에 배포
+		
+		tomcat
+		   |
+		    bin
+		    ..
+		    webapps
+		        -test.war 저장
+
+        라. tomcat이 자동으로 test.war 압축품
+
+		tomcat
+		   |
+		    bin
+		    ..
+		    webapps
+		        |
+			test
+			  |
+			  WEB-INF
+			      |
+			      classes
+			          |
+				  *.class
+			      web.xml
+			  |
+			  *.html
+			  *.jsp
+			  *.css
+			  *.js
+			  image파일등
+
+			 
+	마.
