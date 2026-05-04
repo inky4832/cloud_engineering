@@ -81,7 +81,7 @@ Servlet/JSP 강좌정리 2026-05-04
 		   |
 		    bin
 		    ..
-		    webapps
+		    webapps <================ 배포경로
 		        -test.war 저장
 
         라. tomcat이 자동으로 test.war 압축품
@@ -94,8 +94,10 @@ Servlet/JSP 강좌정리 2026-05-04
 		        |
 			test
 			  |
-			  WEB-INF
+			  WEB-INF   <=============필수. 반드시 대문자
 			      |
+			      lib   
+			         *.jar  <======= Java SE의 빌드패스와 동일한 기능.
 			      classes
 			          |
 				  *.class
@@ -108,4 +110,25 @@ Servlet/JSP 강좌정리 2026-05-04
 			  image파일등
 
 			 
-	마.
+	마. 웹브라우저에서 웹어플리케이션 요청
+
+	   http://localhost:포트번호/자원
+
+	   http://localhost:8080
+
+
+
+3. 웹프로젝트 생성
+
+  File > new > Dynamic Web Project 선택 >
+  
+    Web Module 화면
+
+       Context root:  논리적인 이름인 컨텍스트명, 나중에 변경가능,
+                      기본적으로 프로젝트명으로 설정됨.
+		      http://localhost:8080/컨텍스트명 (매우중요 ******************)
+
+       Content Directory: src/main/webapp  <== 이클립스가 관리하는 디렉토리
+
+        Generate Deployment Descriptor: web.xml (배치 지시자)
+	                                하나의 웹 어플리케이션 설정정보 관리.
