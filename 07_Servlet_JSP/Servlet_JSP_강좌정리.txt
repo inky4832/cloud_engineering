@@ -51,3 +51,22 @@ Servlet/JSP 강좌정리 2026-05-04
 
              서블릿API 문서:
 	      https://tomcat.apache.org/tomcat-10.1-doc/servletapi/index.html
+
+ 
+      * 필요시 환경변수 설정필요
+
+       CATALINA_HOME=C:\cloud_engineering\servlet_jsp\apache-tomcat-10.1.54
+
+
+
+
+   4) 압축풀기
+
+      C:\cloud_engineering\servlet_jsp\apache-tomcat-10.1.54\bin
+
+     C:\cloud_engineering\servlet_jsp\eclipse\configuration
+
+  
+
+  5) eclipse 와 tomcat 연동
+
