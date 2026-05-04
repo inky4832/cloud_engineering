@@ -215,12 +215,13 @@ Servlet/JSP 강좌정리 2026-05-04
 
 
     ==> 결국 사용자서블릿에서 위의 메서드를 그냥 사용할 수 있음. 또는 재정의 가능. (******************)
-        반드시 재정의해야 되는 메서드는 doGet(기본) 또는 doPost 임 (************************)
+   
+   다. 반드시 재정의해야 되는 메서드는 doGet(기본) 또는 doPost 임 (************************)
            ( html에서 method="get(기본)|post" 와 연동되는 메서드임 )
           ////////////////////////////////////////////
 
 
-   다. 서블릿맵핑
+   라. 서블릿맵핑
 
        예>
            src
@@ -251,11 +252,44 @@ Servlet/JSP 강좌정리 2026-05-04
       * 서블릿 맵핑 방법 2가지
 
         가. 어노테이션 이용
-	    - @WebServlet("서블릿맵핑")
+	    - @WebServlet("/서블릿맵핑")  # / 필수
 
 
 	나. web.xml 
 
-	    
+              <!-- 서블릿맵핑 -->
+	    <servlet>
+		<servlet-name>WorldServlet</servlet-name>
+		<servlet-class>com.servlet.WorldServlet</servlet-class>
+	    </servlet>
+	   <servlet-mapping>
+		<servlet-name>WorldServlet</servlet-name>
+		<url-pattern>/world</url-pattern>
+	    </servlet-mapping>	    
+ 
+	  ===> Spring Framework에서 내부적으로 사용되는 서블릿(DispatcherServlet, / 으로 매핑되어있음)을 
+	      매핑하는 방법임.
 
-	
+6. 서블릿 LifeCycle
+
+   - Tomcat 컨테이너가 Servlet의 LifeCycle(생성~소멸)관리함.
+    생성 때 자동 호출되는 콜백메서드(시스템이 호출하는 메서드) 제공 : init()
+    소멸 때 자동 호출되는 콜백메서드 (시스템이 호출하는 메서드) 제공 : destroy()
+    요청 때 자동 호출되는 콜백메서드 (시스템이 호출하는 메서드) 제공 : doGet/doPost
+
+   1) init() 메서드
+
+      - 서블릿이 생성될 때 자동으로 호출됨.
+      - 한번만 호출됨
+
+   2) doGet/doPost 메서드
+   
+      - 서블릿에 요청할 때 자동으로 호출됨.
+      - 요청할 때마다 매번 실행됨. (*********************************)
+
+       코드구현:
+             doGet(HttpServletRequest request, 
+	           HttpServletResponse response){}
+
+             doPost(HttpServletRequest request, 
+	           HttpServletResponse response){}
