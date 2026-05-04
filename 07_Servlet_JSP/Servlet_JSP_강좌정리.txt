@@ -16,3 +16,38 @@ Servlet/JSP 강좌정리 2026-05-04
       ( Tomcat 서버와 Servlet/JSP의 jar 제공)
 
   3) Java ME ( Java Micro Edition )
+
+
+2. 개발환경
+
+  1) Java SE 환경 구축
+     
+      - JDK 설치 ( JDk21)
+      - 환경변수 설정
+	   
+	   JAVA_HOME=C:\Program Files\Java\jdk-21.0.10
+	   PATH=%JAVA_HOME%\bin;%PATH%
+          
+   2) Eclipse 설치
+       http://www.eclipse.org
+
+       Eclipse IDE 2025-03 R Packages 의 Eclipse IDE for Enterprise Java and Web Developers 다운
+
+   
+  3) Tomcat 서버 ( Tomcat 컨테이너 )
+   
+      http://jakarta.apache.org
+      https://tomcat.apache.org/download-10.cgi 에서 Tomcat 10 다운로드.
+
+      * tomcat 9 과 tomcat 10 차이점
+
+       tomcat 9: JDK11 까지만 지원됨
+	         Oracle 벤더에서 관리
+		 패키지명은 javax.servlet 시작됨.
+
+       tomcat 10: JDK 17 이상 지원됨
+                  Apache 벤더에서 관리
+		  패키지명은 jakarta.servlet 시작됨.
+
+             서블릿API 문서:
+	      https://tomcat.apache.org/tomcat-10.1-doc/servletapi/index.html
