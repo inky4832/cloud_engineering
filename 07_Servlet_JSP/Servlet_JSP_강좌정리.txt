@@ -205,12 +205,16 @@ Servlet/JSP 강좌정리 2026-05-04
 	       HttpServlet  ( 추상 클래스 )
 	          |
 		  |
-                사용자서블
+                사용자서블릿
 
-	Servlet 인터페이스: init(), service(), destroy()
-        ServletConfig 인터페이스: getInitParameter(), getServletName()
+	Servlet 인터페이스: init(), service(), destroy(), getServletConfig(0
+        ServletConfig 인터페이스: getInitParameter(), getServletName(),getServletContext()
 
 	GenericServlet 추상클래스:  init(), service(), destroy(), getInitParameter()
-        HttpServlet  추상클래스:  doGet(), doPost()
+        HttpServlet  추상클래스:  doGet(), doPost(), doPut(), doDelete()
 
+
+    ==> 결국 사용자서블릿에서 위의 메서드를 그냥 사용할 수 있음. 또는 재정의 가능. (******************)
+        반드시 재정의해야 되는 메서드는 doGet(기본) 또는 doPost 임 (************************)
+           ( html에서 method="get(기본)|post"
           ////////////////////////////////////////////
