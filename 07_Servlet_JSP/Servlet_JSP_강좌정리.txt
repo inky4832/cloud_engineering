@@ -132,3 +132,30 @@ Servlet/JSP 강좌정리 2026-05-04
 
         Generate Deployment Descriptor: web.xml (배치 지시자)
 	                                하나의 웹 어플리케이션 설정정보 관리.
+
+///////////////////////////////////////////////////////////////////////////
+
+4.  웹 컴포넌트 작성
+
+  1) 서블릿
+  2) jsp
+  3) html ( 사용안함, 대신 jsp 사용 )
+
+        프로젝트명
+	   src
+	     main
+	       java
+	       webapp
+	          META_INF
+	          WEB-INF
+		       - <== WEB-INF는 외부에서 접근이 불가(보안) 
+		  main.html
+		  test.css
+		  test.js
+		  디렉터리
+		     test.html
+		     test.css
+		     test.js
+
+
+	   
